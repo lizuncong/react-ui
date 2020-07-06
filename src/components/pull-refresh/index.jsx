@@ -1,10 +1,27 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import classNames from 'classnames';
 import './style';
 
-const Index = ({ children, className }) => {
+const Index = ({
+  children, onRequest,
+  hasMore, className,
+}) => {
   const scrollTopRef = useRef();
   const [loading, setLoading] = useState(false);
+  const [scrHeight, setScrollHeight] = useState(0);
+  const handleRequest = () => Promise.resolve()
+    .then(() => onRequest && onRequest()).then(() => {
+      setLoading(false);
+    }).catch((err) => {
+      console.log('出错啦。。。', err);
+      setLoading(false);
+    });
+
+  useEffect(() => {
+    console.log('请求列表。。。。');
+    setLoading(true);
+    handleRequest();
+  }, []);
   const prefixCls = 'rui-pull-refresh';
   const cls = classNames(
     prefixCls,
@@ -18,20 +35,35 @@ const Index = ({ children, className }) => {
         const maxScrollTop = scrollHeight - clientHeight;
         const isDown = scrollTop - scrollTopRef.current;
         scrollTopRef.current = scrollTop;
-        console.log('scroll...', scrollTop);
-        if (maxScrollTop - scrollTop < 50 && isDown && !loading) {
-          console.log('加载更多...');
+        if (maxScrollTop - scrollTop < 1 && hasMore && isDown && !loading) {
           setLoading(true);
-          setTimeout(() => {
-            setLoading(false);
-          }, 5000);
+          setScrollHeight(scrollHeight);
+          handleRequest();
         }
       }}
     >
       { children }
-      <div className={`${prefixCls}-loader`}>
-        {loading ? '正在加载' : '加载完成'}
-      </div>
+      {
+        loading
+        && (
+        <div
+          style={{
+            top: scrHeight ? `${scrHeight - 40}px` : '0',
+            bottom: scrollTopRef.current ? `-${scrollTopRef.current}px` : '0',
+          }}
+          className={`${prefixCls}-loader`}
+        >
+          正在加载.....
+        </div>
+        )
+      }
+      {
+        !hasMore && (
+          <div className={`${prefixCls}-nomore`}>
+            没有更多啦
+          </div>
+        )
+      }
     </div>
   );
 };

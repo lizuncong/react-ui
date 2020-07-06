@@ -1,10 +1,21 @@
 @img-compress-prefix-cls: ~'rui-pull-refresh';
 
 .@{img-compress-prefix-cls}{
+  position: relative;
   height: 100%;
   overflow: auto;
   &-loader{
-    padding: 12px;
-    text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &-nomore{
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }

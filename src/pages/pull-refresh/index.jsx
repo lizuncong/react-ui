@@ -1,23 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PullRefresh from 'components/pull-refresh';
 
 import styles from './index.module.less';
 
-const Index = () => (
-  <div className={styles.container}>
-    上拉加载
-    <div className={styles.wrap}>
-      <PullRefresh>
-        {
-          [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].map((item) => (
-            <div key={item} className={styles.item}>
-              {item}
-            </div>
-          ))
-        }
-      </PullRefresh>
+const Index = () => {
+  const [data, setData] = useState([]);
+  const [more, setMore] = useState(true); // 是否还有更多
+  const getData = () => new Promise((resolve) => {
+    window.setTimeout(() => {
+      const { length } = data;
+      for (let i = length; i < (10 + length); i++) {
+        data.push(i);
+      }
+      setData([...data]);
+      if (data.length > 100) {
+        setMore(false);
+      }
+      resolve(true);
+    }, 5000);
+  });
+  return (
+    <div className={styles.container}>
+      上拉加载
+      <div className={styles.wrap}>
+        <PullRefresh
+          onRequest={() => getData()}
+          hasMore={more}
+        >
+          {
+            data.map((item) => (
+              <div key={item} className={styles.item}>
+                {item}
+              </div>
+            ))
+          }
+        </PullRefresh>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default Index;
