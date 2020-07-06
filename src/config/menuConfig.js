@@ -19,6 +19,11 @@ const menuList = [
         menuId: '1003',
         url: '/components/pull-refresh',
       },
+      {
+        title: 'Spin加载中',
+        menuId: '1004',
+        url: '/components/spin',
+      },
     ],
   },
 ];

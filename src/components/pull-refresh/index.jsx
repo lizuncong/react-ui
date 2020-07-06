@@ -18,7 +18,6 @@ const Index = ({
     });
 
   useEffect(() => {
-    console.log('请求列表。。。。');
     setLoading(true);
     handleRequest();
   }, []);

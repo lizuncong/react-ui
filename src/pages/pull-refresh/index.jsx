@@ -21,7 +21,7 @@ const Index = () => {
   });
   return (
     <div className={styles.container}>
-      上拉加载
+      <div className="demo-title">上拉加载</div>
       <div className={styles.wrap}>
         <PullRefresh
           onRequest={() => getData()}
