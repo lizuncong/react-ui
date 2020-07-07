@@ -1,11 +1,13 @@
 import React from 'react';
 import { Input, Select, Button } from 'antd';
-import styles from './index.module.less';
 import IconFont from '../IconFont';
 import RangePicker from '../range-picker';
 import InputRange from '../input-range';
+import './style';
 
 const { Option } = Select;
+
+const prefixCls = 'rui-search-form';
 
 class FormItems extends React.Component {
   constructor(props) {
@@ -62,7 +64,7 @@ class FormItems extends React.Component {
         formItemView = (
           <Select
             allowClear
-            className={styles.gridItemRight}
+            className={`${prefixCls}-grid-item-right`}
             value={value[formItem.dataIndex]}
             mode={formItem.mode}
             maxTagCount={1}
@@ -88,7 +90,7 @@ class FormItems extends React.Component {
           <RangePicker
             start={value[formItem.startIndex]}
             end={value[formItem.endIndex]}
-            className={styles.gridItemRight}
+            className={`${prefixCls}-grid-item-right`}
             ranges={formItem.ranges}
             onChange={(dateStrings) => {
               this.onFormItemChange({
@@ -102,7 +104,7 @@ class FormItems extends React.Component {
       case 'inputRange':
         formItemView = (
           <InputRange
-            className={styles.gridItemRight}
+            className={`${prefixCls}-grid-item-right`}
             start={value[formItem.startIndex]}
             end={value[formItem.endIndex]}
             onChange={(inputValue, dataIndex) => {
@@ -127,7 +129,7 @@ class FormItems extends React.Component {
       default:
         formItemView = (
           <Input
-            className={styles.gridItemRight}
+            className={`${prefixCls}-grid-item-right`}
             value={value[formItem.dataIndex]}
             placeholder="请输入订单号"
             onKeyDown={(e) => {
@@ -160,24 +162,24 @@ class FormItems extends React.Component {
     }
     return (
       <div
-        className={styles.gridContainer}
+        className={`${prefixCls}-grid-container`}
         style={gridStyle}
         ref={this.formItemContainer}
       >
         {
             formItems.map((formItem) => (
-              <div key={formItem.dataIndex || formItem.startIndex} className={styles.gridItem}>
-                <div className={styles.gridItemLeft}>{formItem.title}</div>：
+              <div key={formItem.dataIndex || formItem.startIndex} className={`${prefixCls}-grid-item`}>
+                <div className={`${prefixCls}-grid-item-left`}>{formItem.title}</div>：
                 {this.renderFormItem(formItem)}
               </div>
             ))
           }
-        <div className={styles.btn}>
+        <div className={`${prefixCls}-btn`}>
           {
               gridRows > 1
                 ? (
                   <span
-                    className={styles.more}
+                    className={`${prefixCls}-more`}
                     onClick={() => {
                       this.setState({
                         show: !show,
@@ -185,7 +187,7 @@ class FormItems extends React.Component {
                     }}
                   >
                     更多
-                    <IconFont className={[styles.icon, show && styles.up].join(' ')} type="icon-Down" />
+                    <IconFont className={[`${prefixCls}-icon`, show && `${prefixCls}-up`].join(' ')} type="icon-Down" />
                   </span>
                 )
                 : ''
@@ -193,7 +195,7 @@ class FormItems extends React.Component {
           <Button
             type="primary"
             icon="search"
-            className={styles.search}
+            className={`${prefixCls}-search`}
             onClick={() => {
               onValueChange && onValueChange(value, { type: 'searchBtn' });
             }}

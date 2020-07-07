@@ -1,8 +1,10 @@
 import React from 'react';
-import styles from './index.module.less';
+import classNames from 'classnames';
 import FormItems from './formItems';
 import OtherItems from './otherItems';
 import './style';
+
+const prefixCls = 'rui-search-form';
 
 class SearchForm extends React.Component {
   onValueChange(newValue, formItem) {
@@ -16,9 +18,15 @@ class SearchForm extends React.Component {
   }
 
   render() {
-    const { formItems = [], value, otherItems = [] } = this.props;
+    const {
+      formItems = [], value, otherItems = [], className,
+    } = this.props;
+    const cls = classNames(
+      prefixCls,
+      className,
+    );
     return (
-      <div className={styles.searchFormContainer}>
+      <div className={cls}>
         <FormItems
           formItems={formItems.filter((item) => !item.hidden)}
           value={value}
