@@ -1,7 +1,9 @@
 import React from 'react';
-import styles from './index.module.less';
 import CheckBox from '../check-box';
 import SortBox from '../sort-box';
+import './style';
+
+const prefixCls = 'rui-search-form';
 
 class OtherItems extends React.Component {
   onFormItemChange(itemValue, formItem) {
@@ -24,7 +26,7 @@ class OtherItems extends React.Component {
             onChange={(val) => {
               this.onFormItemChange({ [formItem.dataIndex]: val }, formItem);
             }}
-            className={styles.otherItem}
+            className={`${prefixCls}-other-item`}
           />
         );
         break;
@@ -38,7 +40,7 @@ class OtherItems extends React.Component {
             onChange={(val) => {
               this.onFormItemChange({ [formItem.dataIndex]: val }, formItem);
             }}
-            className={styles.otherItem}
+            className={`${prefixCls}-other-item`}
           />
         );
     }
@@ -50,7 +52,7 @@ class OtherItems extends React.Component {
     const { otherItems } = this.props;
     if (!otherItems.length) return '';
     return (
-      <div className={styles.otherItemContainer}>
+      <div className={`${prefixCls}-other-item-container`}>
         {
             otherItems.map((formItem) => this.renderFormItems(formItem))
           }
