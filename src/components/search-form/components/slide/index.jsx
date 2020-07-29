@@ -1,14 +1,14 @@
 import React, { memo } from 'react';
-import styles from './index.scss';
+import styles from './index.less';
 
 const Index = memo(({
   options = [], value, onChange, className,
-}) => {
-  return (
-    <div className={[styles.slide, className].join(' ')}>
-      {
-        options.map(op => (
+}) => (
+  <div className={[styles.slide, className].join(' ')}>
+    {
+        options.map((op) => (
           <div
+            key={op.value}
             className={[styles.item, value === op.value && styles.selected].join(' ')}
             onClick={() => {
               if (op.value === value) return;
@@ -20,8 +20,7 @@ const Index = memo(({
           </div>
         ))
       }
-    </div>
-  );
-});
+  </div>
+));
 
 export default Index;

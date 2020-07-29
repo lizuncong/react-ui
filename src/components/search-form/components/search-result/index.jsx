@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import styles from '../../index.scss';
+import styles from '../../index.less';
 import RenderLabel from './renderLabel';
 
 const Index = memo(({
@@ -14,7 +14,7 @@ const Index = memo(({
   const validKeys = keys.filter((key) => {
     if (searchValue[key] instanceof Array) {
       return searchValue[key].length;
-    } else if (key.indexOf(startEndKey[1]) > -1) {
+    } if (key.indexOf(startEndKey[1]) > -1) {
       // 把'End'后缀的Key过滤掉，因为Start和End后缀的key成对出现的，只需保留Start后缀的就行
       return false;
     }
@@ -28,8 +28,9 @@ const Index = memo(({
     >
       {
         validKeys
-          .map(key => (
+          .map((key) => (
             <RenderLabel
+              key={key}
               formItem={mapObj[key.replace(startEndKey[0], '')]}
               selectedOptions={selectedOptions}
               onDelete={onDelete}

@@ -2,7 +2,7 @@ import React, { memo, useState, useEffect } from 'react';
 import { Select } from 'antd';
 import RenderFromItem from '../renderFormItem';
 
-import styles from '../../../index.scss';
+import styles from '../../../index.less';
 
 const { Option } = Select;
 
@@ -11,11 +11,11 @@ const Index = memo(({ group, searchValue, onFormItemChange }) => {
   const [formItems, setFormItems] = useState([]);
 
   useEffect(() => {
-    const filterItems = group.filter(item => !item.hidden);
+    const filterItems = group.filter((item) => !item.hidden);
     setDataIndex(filterItems[0] ? filterItems[0].dataIndex : '');
     setFormItems(filterItems);
   }, [group]);
-  const formItem = formItems.find(i => i.dataIndex === dataIndex) || {};
+  const formItem = formItems.find((i) => i.dataIndex === dataIndex) || {};
   return (
     <div
       className={styles.groupItem}
@@ -23,10 +23,10 @@ const Index = memo(({ group, searchValue, onFormItemChange }) => {
       <Select
         value={dataIndex}
         style={{ width: 100 }}
-        onChange={val => setDataIndex(val)}
+        onChange={(val) => setDataIndex(val)}
       >
         {
-          group.map(op => (
+          group.map((op) => (
             <Option key={op.dataIndex} value={op.dataIndex}>{op.title}</Option>
           ))
         }

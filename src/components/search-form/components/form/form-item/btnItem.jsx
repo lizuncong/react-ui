@@ -1,39 +1,40 @@
 import React, { memo } from 'react';
-import { Button } from 'shineout';
-import { VOCICON } from '@/public/common/const';
-import styles from '../../../index.scss';
+import { Button } from 'antd';
+import IconFont from '../../../../IconFont';
 
 const Index = memo(({
   gridRows, show, onMoreClick, onFormItemChange,
-}) =>
-  (
-    <div className={styles.btn}>
+}) => {
+  const prefixCls = 'rui-search-form';
+
+  return (
+    <div className={`${prefixCls}-btn`}>
       {
-        gridRows > 1
-          ? (
-            <span
-              className={styles.more}
-              onClick={() => {
-                onMoreClick(!show);
-              }}
-            >
-                  更多
-              <VOCICON
-                className={[styles.icon, show && styles.up].join(' ')}
-                type="icon-down1"
-              />
-            </span>
-          )
-          : ''
-      }
+          gridRows > 1
+            ? (
+              <span
+                className="more"
+                onClick={() => {
+                  onMoreClick(!show);
+                }}
+              >
+                更多
+                <IconFont
+                  className={['icon', show && 'up'].join(' ')}
+                  type="icon-down1"
+                />
+              </span>
+            )
+            : ''
+        }
       <Button
         type="primary"
-        className={styles.search}
+        className="search"
         onClick={() => {
           onFormItemChange({}, { type: 'searchBtn', autoSearch: true });
         }}
       >
-        <VOCICON type="icon-search" />
+        <IconFont type="icon-search" />
         搜索
       </Button>
       <Button
@@ -42,10 +43,11 @@ const Index = memo(({
           onFormItemChange({}, { type: 'resetBtn', autoSearch: true });
         }}
       >
-        <VOCICON type="icon-reset" />
+        <IconFont type="icon-reset" />
         重置
       </Button>
     </div>
-  ));
+  );
+});
 
 export default Index;

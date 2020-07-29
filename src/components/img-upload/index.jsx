@@ -4,7 +4,7 @@ import Icon from '../IconFont';
 import compress from './compress';
 import './style';
 
-class Upload extends React.Component {
+class Upload extends React.PureComponent {
   constructor(props) {
     super(props);
     this.fileInput = React.createRef();
@@ -88,30 +88,30 @@ class Upload extends React.Component {
         className={compressCls}
       >
         {
-            !maxLength || fileObjs.length < maxLength
-              ? (
-                <div className={`${prefixCls}-item`}>
-                  <div
-                    className={`${prefixCls}-input-container`}
-                    onClick={() => {
-                      this.fileInput.current.click();
-                    }}
-                  >
-                    <span className={`${prefixCls}-upload-icon`}>+</span>
-                    <input
-                      className={`${prefixCls}-file-input`}
-                      ref={this.fileInput}
-                      type="file"
-                      name="file"
-                      multiple="multiple"
-                      accept="image/*"
-                      onChange={(e) => this.onInputChange(e)}
-                    />
-                  </div>
+          !maxLength || fileObjs.length < maxLength
+            ? (
+              <div className={`${prefixCls}-item`}>
+                <div
+                  className={`${prefixCls}-input-container`}
+                  onClick={() => {
+                    this.fileInput.current.click();
+                  }}
+                >
+                  <span className={`${prefixCls}-upload-icon`}>+</span>
+                  <input
+                    className={`${prefixCls}-file-input`}
+                    ref={this.fileInput}
+                    type="file"
+                    name="file"
+                    multiple="multiple"
+                    accept="image/*"
+                    onChange={(e) => this.onInputChange(e)}
+                  />
                 </div>
-              )
-              : ''
-          }
+              </div>
+            )
+            : ''
+        }
         {
             fileObjs.map((fileObj, index) => (
               <div

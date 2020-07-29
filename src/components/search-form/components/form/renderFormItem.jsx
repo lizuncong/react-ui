@@ -5,7 +5,7 @@ import RangePickerItem from './form-item/rangePicker';
 import GroupItem from './group-item';
 import InputItem from './form-item/input';
 import SlideItem from '../slide';
-import styles from '../../index.scss';
+import styles from '../../index.less';
 
 export default memo(({ formItem, searchValue, onFormItemChange }) => {
   let formItemView = '';
@@ -21,12 +21,19 @@ export default memo(({ formItem, searchValue, onFormItemChange }) => {
       break;
     case 'searchSelect':
       formItemView = (
-        <SearchSelectItem
+        <SelectItem
           value={searchValue[formItem.dataIndex]}
           formItem={formItem}
           onFormItemChange={onFormItemChange}
         />
       );
+      // formItemView = (
+      //   <SearchSelectItem
+      //     value={searchValue[formItem.dataIndex]}
+      //     formItem={formItem}
+      //     onFormItemChange={onFormItemChange}
+      //   />
+      // );
       break;
     case 'datePicker': {
       const startIndex = `${formItem.dataIndex}Start`;

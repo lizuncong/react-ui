@@ -1,4 +1,5 @@
-.searchFormContainer{
+@search-form-prefix-cls: ~'rui-search-form';
+.@{search-form-prefix-cls}{
   background:rgba(255,255,255,1);
   box-shadow:0 2px 16px 0 rgba(69,165,255,0.12);
   border-radius:8px;
@@ -6,38 +7,39 @@
   padding: 12px 0 12px 20px;
   margin-bottom: 12px;
   user-select: none;
-  .gridContainer{
+  &&-btn{
+    display: flex;
+    justify-content: flex-end;
+    grid-row-start: 1;
+    grid-column-end: -1;
+    text-align: right;
+    padding-right: 20px;
+    .more{
+      display:flex;
+      align-items: center;
+      font-size:14px;
+      color: #33CCBD;
+      margin-right: 12px;
+      cursor: pointer;
+      user-select: none;
+      .icon{
+        transition: all .3s;
+        font-size:20px;
+        margin-left: 4px;
+        &.up{
+          transform: rotate(-180deg);
+        }
+      }
+    }
+    .search{
+      margin-right: 12px;
+    }
+  }
+  &-grid-container{
     display: grid;
     transition: all .3s;
     overflow: hidden;
-    .btn{
-      display: flex;
-      justify-content: flex-end;
-      grid-row-start: 1;
-      grid-column-end: -1;
-      text-align: right;
-      padding-right: 20px;
-      .more{
-        display:flex;
-        align-items: center;
-        font-size:14px;
-        color: #33CCBD;
-        margin-right: 12px;
-        cursor: pointer;
-        user-select: none;
-        .icon{
-          transition: all .3s;
-          font-size:20px;
-          margin-left: 4px;
-          &.up{
-            transform: rotate(-180deg);
-          }
-        }
-      }
-      .search{
-        margin-right: 12px;
-      }
-    }
+
     .gridItem{
       display: flex;
       align-items: center;
@@ -69,7 +71,7 @@
       }
     }
     .groupItem{
-      @extend .gridItem;
+      .gridItem;
       padding-right: 0;
       height: 100%;
       .groupItemRight{
@@ -96,7 +98,6 @@
       top: 8px;
     }
   }
-
   // 搜索结果
   .searchResult{
     display: flex;

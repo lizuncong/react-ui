@@ -29,7 +29,7 @@ const Index = memo(({ formItem, value, onFormItemChange }) => (
     filterOption={(text, option) => option.props.children.indexOf(text) >= 0}
   >
     {
-        formItem.options && formItem.options.map(item => (
+        formItem.options && formItem.options.map((item) => (
           <Option
             key={item.value}
             value={item.value}

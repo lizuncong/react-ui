@@ -1,7 +1,10 @@
-import React, { useState, useEffect, memo, useMemo, useCallback } from 'react';
-import styles from './index.scss';
+import React, {
+  useState, useEffect, memo, useMemo, useCallback,
+} from 'react';
+import classNames from 'classnames';
 import FormItems from './components/form';
-import SearchResult from './components/search-result';
+// import SearchResult from './components/search-result';
+import './style';
 
 // 转换数据，将formItem: [{ type: 'input', dataIndex: 'sku' }]转成
 // { sku: { type: 'input', dataIndex: 'sku', ...rest} }
@@ -21,6 +24,7 @@ const transformData = (data = []) => {
 
 const SearchForm = memo(({
   defaultSearchValue = {}, formItems = [], searchValue = {}, onSearchValueChange,
+  className,
 }) => {
   const [innerSearchValue, setInnerSearchValue] = useState(() => ({ ...defaultSearchValue }));
   // 用于保留选择框选择的那些选项，用于筛选结果中select选项的渲染, 结构：{ dataIndex: { value1: label1, value2: label2 }}
@@ -53,8 +57,7 @@ const SearchForm = memo(({
   }, [selectedOptions]);
 
   // 过滤掉formItem的hidden属性为true的搜索框
-  const formItemsFilter = useMemo(() => formItems.filter(item => !item.hidden), [formItems]);
-
+  const formItemsFilter = useMemo(() => formItems.filter((item) => !item.hidden), [formItems]);
 
   useEffect(() => {
     const mapObjTemp = transformData(formItems);
@@ -65,12 +68,12 @@ const SearchForm = memo(({
         const obj = {};
         if (item.multiple) {
           searchValue[key].forEach((value) => {
-            const findItem = (item.options || []).find(i => i.value === value);
+            const findItem = (item.options || []).find((i) => i.value === value);
             obj[value] = findItem ? findItem.label : '没匹配到';
           });
           selectedOptions[key] = { ...temp, ...obj };
         } else {
-          const findItem = (item.options || []).find(i => i.value === searchValue[key]);
+          const findItem = (item.options || []).find((i) => i.value === searchValue[key]);
           obj[searchValue[key]] = findItem ? findItem.label : '没匹配到';
           selectedOptions[key] = { ...temp, ...obj };
         }
@@ -86,20 +89,28 @@ const SearchForm = memo(({
       setInnerSearchValue({ ...searchValue });
     }
   }, [searchValue]);
+
+  const prefixCls = 'rui-search-form';
+
+  const searchFormCls = classNames(
+    prefixCls,
+    className,
+  );
+
   return (
-    <div className={styles.searchFormContainer}>
+    <div className={searchFormCls}>
       <FormItems
         defaultSearchValue={defaultSearchValue}
         formItems={formItemsFilter}
         searchValue={innerSearchValue}
         onItemValueChange={memoizedOnItemValueChange}
       />
-      <SearchResult
-        searchValue={searchValue}
-        mapObj={mapObj}
-        selectedOptions={selectedOptions}
-        onDelete={memoizedOnDelete}
-      />
+      {/*<SearchResult*/}
+      {/*  searchValue={searchValue}*/}
+      {/*  mapObj={mapObj}*/}
+      {/*  selectedOptions={selectedOptions}*/}
+      {/*  onDelete={memoizedOnDelete}*/}
+      {/*/>*/}
     </div>
   );
 });

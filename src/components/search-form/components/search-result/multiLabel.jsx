@@ -1,21 +1,23 @@
-import React, { useState, useEffect, memo } from 'react';
-import styles from '../../index.scss';
-import { VOCICON } from '../../../../common/const';
+import React, { memo } from 'react';
+import IconFont from '../../../IconFont';
+import styles from '../../index.less';
 
 const LabelItem = memo(({
-  disabledClear, label, value, onClick,
+  disabledClear, label, onClick,
 }) => (
   <span
     className={styles.label}
   >
     {label}
     {
-        !disabledClear &&
-        <VOCICON
+        !disabledClear
+        && (
+        <IconFont
           type="icon-x"
           className={styles.close}
           onClick={() => onClick()}
         />
+        )
       }
   </span>
 ));
@@ -26,14 +28,14 @@ const Index = memo(({
   <span className={styles.labelContainer}>
     {title}：
     {
-      items.map(item => (
+      items.map((item) => (
         <LabelItem
           key={item.value}
           disabledClear={disabledClear}
           label={item.label}
           value={item.value}
           onClick={() => {
-            onClick(items.filter(i => i.value !== item.value).map(i => ({ ...i })));
+            onClick(items.filter((i) => i.value !== item.value).map((i) => ({ ...i })));
           }}
         />
       ))

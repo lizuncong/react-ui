@@ -1,21 +1,23 @@
-import React, { useState, useEffect, memo } from 'react';
-import styles from '../../index.scss';
-import { VOCICON } from '../../../../common/const';
+import React, { memo } from 'react';
+import IconFont from '../../../IconFont';
+import styles from '../../index.less';
 
 const LabelItem = memo(({
-  disabledClear, label, value, onClick,
+  disabledClear, label, onClick,
 }) => (
   <span
     className={styles.label}
   >
     {label}
     {
-        !disabledClear &&
-        <VOCICON
+        !disabledClear
+        && (
+        <IconFont
           type="icon-x"
           className={styles.close}
           onClick={() => onClick()}
         />
+        )
       }
   </span>
 ));

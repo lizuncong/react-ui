@@ -12,7 +12,7 @@ const Index = memo(({
     case 'slide':
       if (formItem.multiple) {
         const soptions = selectedOptions[formItem.dataIndex] || {};
-        const labelItems = (searchValue[formItem.dataIndex] || []).map(val => ({
+        const labelItems = (searchValue[formItem.dataIndex] || []).map((val) => ({
           label: soptions[val],
           value: val,
         }));
@@ -26,7 +26,7 @@ const Index = memo(({
               onDelete(
                 {
                   ...searchValue,
-                  ...{ [formItem.dataIndex]: newItems.map(i => i.value) },
+                  ...{ [formItem.dataIndex]: newItems.map((i) => i.value) },
                 },
                 formItem,
               );

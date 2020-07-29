@@ -1,6 +1,6 @@
 import React from 'react';
 import { Input } from 'antd';
-import styles from './index.scss';
+import styles from './index.less';
 
 class InputRange extends React.Component {
   onInputChange(dataIndex, e) {

@@ -29,7 +29,6 @@ const Index = memo(({ value, formItem, onFormItemChange }) => {
       }}
       value={value}
       placeholder={formItem.placeholder ? formItem.placeholder : `请输入${formItem.title}`}
-      {...formItem}
     />
   );
 });

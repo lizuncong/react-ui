@@ -1,7 +1,6 @@
 import React from 'react';
 import GridContainer from './gridContainer';
-import RenderFromItem from './renderFormItem';
-import styles from '../../index.scss';
+// import RenderFromItem from './renderFormItem';
 
 class FormItems extends React.PureComponent {
   constructor(props) {
@@ -45,29 +44,29 @@ class FormItems extends React.PureComponent {
         onFormItemChange={this.onFormItemChange}
         itemCounts={formItems.length}
       >
-        {
-          formItems.map((formItem) => {
-            let key = formItem.dataIndex;
-            if (formItem.group && formItem.group[0]) {
-              key = formItem.group[0].dataIndex;
-            }
-            return (
-              <div
-                key={key}
-                className={styles.gridItem}
-              >
-                { formItem.title && (<div className={styles.gridItemLeft}>{formItem.title}：</div>)}
-                <div className={styles.gridItemRight}>
-                  <RenderFromItem
-                    formItem={formItem}
-                    searchValue={searchValue}
-                    onFormItemChange={this.onFormItemChange}
-                  />
-                </div>
-              </div>
-            );
-          })
-        }
+        {/* { */}
+        {/*  formItems.map((formItem) => { */}
+        {/*    let key = formItem.dataIndex; */}
+        {/*    if (formItem.group && formItem.group[0]) { */}
+        {/*      key = formItem.group[0].dataIndex; */}
+        {/*    } */}
+        {/*    return ( */}
+        {/*      <div */}
+        {/*        key={key} */}
+        {/*        className={styles.gridItem} */}
+        {/*      > */}
+        {/*        { formItem.title && (<div className={styles.gridItemLeft}>{formItem.title}：</div>)} */}
+        {/*        <div className={styles.gridItemRight}> */}
+        {/*          <RenderFromItem */}
+        {/*            formItem={formItem} */}
+        {/*            searchValue={searchValue} */}
+        {/*            onFormItemChange={this.onFormItemChange} */}
+        {/*          /> */}
+        {/*        </div> */}
+        {/*      </div> */}
+        {/*    ); */}
+        {/*  }) */}
+        {/* } */}
       </GridContainer>
     );
   }
