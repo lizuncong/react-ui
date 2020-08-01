@@ -46,7 +46,8 @@ class Upload extends React.PureComponent {
       const file = e.target.files[key];
 
       // 验证图片格式
-      const type = file.name.split('.')[1];
+      const parts = file.name.split('.');
+      const type = parts[parts.length - 1];
       if (type !== 'png' && type !== 'jpg' && type !== 'jpeg') {
         console.warn('请上传png,jpg,jpeg格式的图片！');
         e.target.value = '';

@@ -24,6 +24,11 @@ const menuList = [
         menuId: '1004',
         url: '/components/spin',
       },
+      {
+        title: '长列表虚拟滚动',
+        menuId: '1005',
+        url: '/components/virtual-scroll',
+      },
     ],
   },
 ];

@@ -75,7 +75,7 @@ export default class List extends PureComponent {
     if (typeof initialScrollOffset === 'number') {
       this.outerRef.scrollTop = initialScrollOffset;
     }
-    this.scrollToItem(139811);
+    // this.scrollToItem(139811);
   }
 
   componentWillUnmount() {

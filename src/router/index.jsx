@@ -12,6 +12,7 @@ const SearchForm = loadable(() => import(/* webpackChunkName: "searchForm" */'..
 const ImageCompress = loadable(() => import(/* webpackChunkName: "imageCompress" */'../pages/image-compress'));
 const PullRefresh = loadable(() => import(/* webpackChunkName: "pullRefresh" */'../pages/pull-refresh'));
 const Spin = loadable(() => import(/* webpackChunkName: "spin" */'../pages/spin'));
+const VirtualScroll = loadable(() => import(/* webpackChunkName: "virtual-scroll" */'../pages/virtual-scroll'));
 
 class IRouter extends React.Component {
   render() {
@@ -39,6 +40,7 @@ class IRouter extends React.Component {
                     <Route path="/components/image-compress" component={ImageCompress} />
                     <Route path="/components/pull-refresh" component={PullRefresh} />
                     <Route path="/components/spin" component={Spin} />
+                    <Route path="/components/virtual-scroll" component={VirtualScroll} />
                     <Redirect to="/home" />
                     {/* <Route component={NotFound} /> */}
                   </Switch>
