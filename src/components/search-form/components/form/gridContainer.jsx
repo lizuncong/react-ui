@@ -1,6 +1,6 @@
 import React from 'react';
 import BtnItem from './form-item/btnItem';
-
+import { prefixCls } from '../../utils';
 /*
 * 简单的网格布局容器
 * */
@@ -63,7 +63,6 @@ class GridContainer extends React.PureComponent {
     if (gridContainerHeight) {
       gridStyle.height = `${show ? gridContainerHeight : this.gridRowHeight}px`;
     }
-    const prefixCls = 'rui-search-form';
 
     return (
       <div

@@ -1,20 +1,20 @@
 import React, { memo } from 'react';
 import IconFont from '../../../IconFont';
-import styles from '../../index.less';
+import { prefixCls } from '../../utils';
 
 const LabelItem = memo(({
   disabledClear, label, onClick,
 }) => (
   <span
-    className={styles.label}
+    className={`${prefixCls}-label`}
   >
     {label}
     {
         !disabledClear
         && (
         <IconFont
-          type="icon-x"
-          className={styles.close}
+          type="icon-Cancel"
+          className={`${prefixCls}-close`}
           onClick={() => onClick()}
         />
         )
@@ -25,7 +25,7 @@ const Index = memo(({
   title, label, value, onClick,
   disabledClear,
 }) => (
-  <span className={styles.labelContainer}>
+  <span className={`${prefixCls}-label-container`}>
     {title}：
     <LabelItem
       label={label}

@@ -2,10 +2,9 @@ import React, { memo, useCallback } from 'react';
 import SelectItem from './form-item/select';
 import SearchSelectItem from './form-item/searchSelect';
 import RangePickerItem from './form-item/rangePicker';
-import GroupItem from './group-item';
 import InputItem from './form-item/input';
-import SlideItem from '../slide';
-import styles from '../../index.less';
+import SlideItem from '../../../slide';
+import { prefixCls } from '../../utils';
 
 export default memo(({ formItem, searchValue, onFormItemChange }) => {
   let formItemView = '';
@@ -21,19 +20,12 @@ export default memo(({ formItem, searchValue, onFormItemChange }) => {
       break;
     case 'searchSelect':
       formItemView = (
-        <SelectItem
+        <SearchSelectItem
           value={searchValue[formItem.dataIndex]}
           formItem={formItem}
           onFormItemChange={onFormItemChange}
         />
       );
-      // formItemView = (
-      //   <SearchSelectItem
-      //     value={searchValue[formItem.dataIndex]}
-      //     formItem={formItem}
-      //     onFormItemChange={onFormItemChange}
-      //   />
-      // );
       break;
     case 'datePicker': {
       const startIndex = `${formItem.dataIndex}Start`;
@@ -48,15 +40,6 @@ export default memo(({ formItem, searchValue, onFormItemChange }) => {
       );
       break;
     }
-    case 'group':
-      formItemView = (
-        <GroupItem
-          group={formItem.group || []}
-          searchValue={searchValue}
-          onFormItemChange={onFormItemChange}
-        />
-      );
-      break;
     case 'input':
       formItemView = (
         <InputItem
@@ -69,7 +52,7 @@ export default memo(({ formItem, searchValue, onFormItemChange }) => {
     case 'slide':
       formItemView = (
         <SlideItem
-          className={styles.slideItemContainer}
+          className={`${prefixCls}-slide-item-container`}
           value={searchValue[formItem.dataIndex]}
           options={formItem.options}
           onChange={

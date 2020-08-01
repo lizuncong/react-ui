@@ -3,8 +3,9 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import FormItems from './components/form';
-// import SearchResult from './components/search-result';
+import SearchResult from './components/search-result';
 import './style';
+import { prefixCls } from './utils';
 
 // 转换数据，将formItem: [{ type: 'input', dataIndex: 'sku' }]转成
 // { sku: { type: 'input', dataIndex: 'sku', ...rest} }
@@ -90,8 +91,6 @@ const SearchForm = memo(({
     }
   }, [searchValue]);
 
-  const prefixCls = 'rui-search-form';
-
   const searchFormCls = classNames(
     prefixCls,
     className,
@@ -105,12 +104,12 @@ const SearchForm = memo(({
         searchValue={innerSearchValue}
         onItemValueChange={memoizedOnItemValueChange}
       />
-      {/*<SearchResult*/}
-      {/*  searchValue={searchValue}*/}
-      {/*  mapObj={mapObj}*/}
-      {/*  selectedOptions={selectedOptions}*/}
-      {/*  onDelete={memoizedOnDelete}*/}
-      {/*/>*/}
+      <SearchResult
+        searchValue={searchValue}
+        mapObj={mapObj}
+        selectedOptions={selectedOptions}
+        onDelete={memoizedOnDelete}
+      />
     </div>
   );
 });

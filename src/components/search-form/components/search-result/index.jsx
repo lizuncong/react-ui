@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
-import styles from '../../index.less';
 import RenderLabel from './renderLabel';
+import { prefixCls } from '../../utils';
 
 const Index = memo(({
   searchValue, mapObj, selectedOptions, onDelete,
@@ -24,7 +24,7 @@ const Index = memo(({
   if (!validKeys.length) return '';
   return (
     <div
-      className={styles.searchResult}
+      className={`${prefixCls}-search-result`}
     >
       {
         validKeys

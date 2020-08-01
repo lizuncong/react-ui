@@ -8,7 +8,7 @@ const defaultSearchValue = {
   isFirstOrder: '1',
   // test4: ['1', '2'],
 };
-class Demo extends React.PureComponent {
+class Index extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -170,6 +170,13 @@ class Demo extends React.PureComponent {
         field: 'faQcSupplier',
       },
       {
+        title: '工厂(单选)',
+        type: 'searchSelect', // 远程搜索，不需要传options。
+        dataIndex: 'factoryId2',
+        // autoSearch: true, // 开启自动搜索，条件一改变就搜索
+        field: 'faQcSupplier',
+      },
+      {
         title: '条件6',
         dataIndex: 'test6', // 日期范围的索引，会自动加上Start和End后缀，即test6Start和test6End
         type: 'datePicker',
@@ -208,22 +215,19 @@ class Demo extends React.PureComponent {
   render() {
     const { searchValue } = this.state;
     return (
+      <div>
+        <SearchForm
+          formItems={this.formItems}
+          defaultSearchValue={defaultSearchValue}
+          searchValue={searchValue}
+          onSearchValueChange={this.onSearchValueChange}
+        />
         <div>
-          <SearchForm
-              formItems={this.formItems}
-              defaultSearchValue={defaultSearchValue}
-              searchValue={searchValue}
-              onSearchValueChange={this.onSearchValueChange}
-          />
-          <div>
-            searchValue: { JSON.stringify(searchValue)}
-          </div>
+          searchValue: { JSON.stringify(searchValue)}
         </div>
+      </div>
     );
   }
 }
 
-Demo.propTypes = {
-};
-
-export default Demo;
+export default Index;

@@ -7,126 +7,121 @@
   padding: 12px 0 12px 20px;
   margin-bottom: 12px;
   user-select: none;
-  &&-btn{
+  &-btn{
     display: flex;
     justify-content: flex-end;
     grid-row-start: 1;
     grid-column-end: -1;
     text-align: right;
     padding-right: 20px;
-    .more{
-      display:flex;
-      align-items: center;
-      font-size:14px;
-      color: #33CCBD;
-      margin-right: 12px;
-      cursor: pointer;
-      user-select: none;
-      .icon{
-        transition: all .3s;
-        font-size:20px;
-        margin-left: 4px;
-        &.up{
-          transform: rotate(-180deg);
-        }
-      }
-    }
-    .search{
-      margin-right: 12px;
-    }
+  }
+  &-more{
+    display:flex;
+    align-items: center;
+    font-size:14px;
+    color: #1890FF;
+    margin-right: 12px;
+    cursor: pointer;
+    user-select: none;
+  }
+  &-icon{
+    transition: all .3s;
+    font-size:20px;
+    margin-left: 4px;
+  }
+  &-up{
+    transform: rotate(-180deg);
+  }
+  &-search{
+    margin-right: 12px;
   }
   &-grid-container{
     display: grid;
     transition: all .3s;
     overflow: hidden;
-
-    .gridItem{
-      display: flex;
-      align-items: center;
-      padding-right: 20px;
-      //text-align: right;
-      .gridItemLeft{
-        flex-shrink: 0;
-        font-size:14px;
-        font-family:PingFangSC-Regular,PingFang SC;
-        font-weight:400;
-        color:rgba(53,56,61,1);
-        width: 80px;
-        text-align: justify;
-        text-align-last: justify;
-        &:after{
-          content: '';
-          width: 100%;
-          height: 0;
-        }
-      }
-      .gridItemRight{
-        height: 100%;
-        flex: 1;
-        :global{
-          .ant-calendar-picker{
-            width: 100% !important;
-          }
-        }
-      }
-    }
-    .groupItem{
-      .gridItem;
-      padding-right: 0;
-      height: 100%;
-      .groupItemRight{
-        flex: 1;
-        height: 100%;
-        :global{
-          .ant-select-selection{
-            border-radius: 0 4px 4px 0;
-            border-left: 0;
-          }
-          .ant-input{
-            border-radius: 0 4px 4px 0;
-            border-left: 0;
-          }
-        }
-      }
-      :global{
-        .ant-select-selection{
-          border-radius: 4px 0 0 4px;
-        }
-      }
-    }
-    .slideItemContainer{
-      top: 8px;
+  }
+  &-grid-item{
+    display: flex;
+    align-items: center;
+    padding-right: 20px;
+    //text-align: right;
+  }
+  &-grid-item-left{
+    flex-shrink: 0;
+    font-size:14px;
+    font-weight:400;
+    color:rgba(53,56,61,1);
+    width: 100px;
+    text-align: justify;
+    text-align-last: justify;
+    &:after{
+      content: '';
+      width: 100%;
+      height: 0;
     }
   }
+  &-grid-item-right{
+    height: 100%;
+    flex: 1;
+    .ant-calendar-picker{
+      width: 100% !important;
+    }
+  }
+
+  &-group-item{
+    display: flex;
+    align-items: center;
+    padding-right: 0;
+    height: 100%;
+    .ant-select-selection{
+      border-radius: 4px 0 0 4px;
+    }
+  }
+  &-group-item-right{
+    flex: 1;
+    height: 100%;
+    .ant-select-selection{
+      border-radius: 0 4px 4px 0;
+      border-left: 0;
+    }
+    .ant-input{
+      border-radius: 0 4px 4px 0;
+      border-left: 0;
+    }
+  }
+  &-slide-item-container{
+    top: 7px;
+  }
   // 搜索结果
-  .searchResult{
+  &-search-result{
     display: flex;
     flex-wrap: wrap;
     margin: 12px 0 0 0;
     border-top: 1px dashed #e4eaf0;
     overflow: hidden;
-    .labelContainer{
-      margin: 12px 2px 0 0;
-    }
-    .label{
-      margin-right: 10px;
-      color: #666666;
-      height: 24px;
-      line-height: 22px;
-      background: #FAFAFA;
-      border: 1px solid #e8e8e8;
-      padding: 0 8px;
-      border-radius: 4px;
-      cursor: pointer;
-      &:hover{
-        background-color: #33CCBD;
-        color: white;
-        border-color: #33CCBD;
-      }
-      .close{
-        margin-left: 4px;
-        font-size: 12px;
-      }
+  }
+  &-label-container{
+    margin: 12px 2px 0 0;
+  }
+  &-label{
+    margin-right: 10px;
+    color: #666666;
+    height: 24px;
+    line-height: 22px;
+    background: #FAFAFA;
+    border: 1px solid #e8e8e8;
+    padding: 0 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    &:hover{
+      background-color: #1890FF;
+      color: white;
+      border-color: #1890FF;
     }
   }
+  &-close{
+    margin-left: 4px;
+    font-size: 12px;
+  }
 }
+

@@ -1,12 +1,11 @@
 import React, { memo, useState, useEffect } from 'react';
 import { Select } from 'antd';
 import RenderFromItem from '../renderFormItem';
-
-import styles from '../../../index.less';
+import { prefixCls } from '../../../utils';
 
 const { Option } = Select;
 
-const Index = memo(({ group, searchValue, onFormItemChange }) => {
+const GroupItem = memo(({ group, searchValue, onFormItemChange }) => {
   const [dataIndex, setDataIndex] = useState('');
   const [formItems, setFormItems] = useState([]);
 
@@ -16,9 +15,10 @@ const Index = memo(({ group, searchValue, onFormItemChange }) => {
     setFormItems(filterItems);
   }, [group]);
   const formItem = formItems.find((i) => i.dataIndex === dataIndex) || {};
+
   return (
     <div
-      className={styles.groupItem}
+      className={`${prefixCls}-group-item`}
     >
       <Select
         value={dataIndex}
@@ -31,7 +31,7 @@ const Index = memo(({ group, searchValue, onFormItemChange }) => {
           ))
         }
       </Select>
-      <div className={styles.groupItemRight}>
+      <div className={`${prefixCls}-group-item-right`}>
         <RenderFromItem
           formItem={formItem}
           searchValue={searchValue}
@@ -42,4 +42,4 @@ const Index = memo(({ group, searchValue, onFormItemChange }) => {
   );
 });
 
-export default Index;
+export default GroupItem;

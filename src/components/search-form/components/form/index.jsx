@@ -1,6 +1,8 @@
 import React from 'react';
+import GroupItem from './form-item/group-item';
 import GridContainer from './gridContainer';
-// import RenderFromItem from './renderFormItem';
+import RenderFromItem from './renderFormItem';
+import { prefixCls } from '../../utils';
 
 class FormItems extends React.PureComponent {
   constructor(props) {
@@ -39,34 +41,47 @@ class FormItems extends React.PureComponent {
       formItems,
       searchValue,
     } = this.props;
+
     return (
       <GridContainer
         onFormItemChange={this.onFormItemChange}
         itemCounts={formItems.length}
       >
-        {/* { */}
-        {/*  formItems.map((formItem) => { */}
-        {/*    let key = formItem.dataIndex; */}
-        {/*    if (formItem.group && formItem.group[0]) { */}
-        {/*      key = formItem.group[0].dataIndex; */}
-        {/*    } */}
-        {/*    return ( */}
-        {/*      <div */}
-        {/*        key={key} */}
-        {/*        className={styles.gridItem} */}
-        {/*      > */}
-        {/*        { formItem.title && (<div className={styles.gridItemLeft}>{formItem.title}：</div>)} */}
-        {/*        <div className={styles.gridItemRight}> */}
-        {/*          <RenderFromItem */}
-        {/*            formItem={formItem} */}
-        {/*            searchValue={searchValue} */}
-        {/*            onFormItemChange={this.onFormItemChange} */}
-        {/*          /> */}
-        {/*        </div> */}
-        {/*      </div> */}
-        {/*    ); */}
-        {/*  }) */}
-        {/* } */}
+        {
+          formItems.map((formItem) => {
+            let key = formItem.dataIndex;
+            if (formItem.group && formItem.group[0]) {
+              key = formItem.group[0].dataIndex;
+            }
+            return (
+              <div
+                key={key}
+                className={`${prefixCls}-grid-item`}
+              >
+                { formItem.title && (<div className={`${prefixCls}-grid-item-left`}>{formItem.title}：</div>)}
+                <div className={`${prefixCls}-grid-item-right`}>
+                  {
+                    formItem.type === 'group'
+                      ? (
+                        <GroupItem
+                          group={formItem.group || []}
+                          searchValue={searchValue}
+                          onFormItemChange={this.onFormItemChange}
+                        />
+                      )
+                      : (
+                        <RenderFromItem
+                          formItem={formItem}
+                          searchValue={searchValue}
+                          onFormItemChange={this.onFormItemChange}
+                        />
+                      )
+                  }
+                </div>
+              </div>
+            );
+          })
+         }
       </GridContainer>
     );
   }

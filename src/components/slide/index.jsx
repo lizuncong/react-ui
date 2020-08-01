@@ -1,22 +1,23 @@
 import React, { memo } from 'react';
-import styles from './index.less';
+import { prefixCls } from './utils';
+import './style';
 
 const Index = memo(({
   options = [], value, onChange, className,
 }) => (
-  <div className={[styles.slide, className].join(' ')}>
+  <div className={[`${prefixCls}`, className].join(' ')}>
     {
         options.map((op) => (
           <div
             key={op.value}
-            className={[styles.item, value === op.value && styles.selected].join(' ')}
+            className={[`${prefixCls}-item`, value === op.value && `${prefixCls}-selected`].join(' ')}
             onClick={() => {
               if (op.value === value) return;
               onChange(op.value, op);
             }}
           >
-            <div tabIndex="0" className={styles.dot} />
-            <span className={styles.label}>{op.label}</span>
+            <div tabIndex="0" className={`${prefixCls}-dot`} />
+            <span className={`${prefixCls}-label`}>{op.label}</span>
           </div>
         ))
       }
