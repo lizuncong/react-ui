@@ -14,7 +14,7 @@ const devConfig = {
     open: true,
     overlay: true,
     hot: true,
-    port: 8008,
+    port: 8009,
     historyApiFallback: true,
     // proxy: {
     // '/server': {

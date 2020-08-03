@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchForm from 'components/search-form';
+import styles from './index.module.less';
 
 const defaultSearchValue = {
   test3: '1',
@@ -145,7 +146,7 @@ class Index extends React.PureComponent {
         dataIndex: 'test4',
         type: 'select',
         multiple: true, // 是否多选
-        // autoSearch: true, // 开启自动搜索，条件一改变就搜索
+        autoSearch: true, // 开启自动搜索，条件一改变就搜索
         options: [
           {
             label: '选项1',
@@ -215,15 +216,18 @@ class Index extends React.PureComponent {
   render() {
     const { searchValue } = this.state;
     return (
-      <div>
-        <SearchForm
-          formItems={this.formItems}
-          defaultSearchValue={defaultSearchValue}
-          searchValue={searchValue}
-          onSearchValueChange={this.onSearchValueChange}
-        />
-        <div>
-          searchValue: { JSON.stringify(searchValue)}
+      <div className={styles.container}>
+        <div className="demo-title">上拉加载</div>
+        <div className={styles.wrap}>
+          <SearchForm
+            formItems={this.formItems}
+            defaultSearchValue={defaultSearchValue}
+            searchValue={searchValue}
+            onSearchValueChange={this.onSearchValueChange}
+          />
+          <div>
+            searchValue: { JSON.stringify(searchValue)}
+          </div>
         </div>
       </div>
     );
