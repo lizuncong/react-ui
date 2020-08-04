@@ -98,7 +98,7 @@ class Index extends React.PureComponent {
         ],
       },
       {
-        title: '是否首单', // 可以输入任意字符
+        title: 'slide', // 可以输入任意字符
         dataIndex: 'isFirstOrder',
         type: 'slide',
         options: [

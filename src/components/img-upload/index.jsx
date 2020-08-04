@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import Icon from '../IconFont';
 import compress from './compress';
+import { prefixCls } from './utils';
 import './style';
 
 class Upload extends React.PureComponent {
@@ -79,7 +80,6 @@ class Upload extends React.PureComponent {
   render() {
     const { fileObjs } = this.state;
     const { onChange, maxLength, className } = this.props;
-    const prefixCls = 'rui-img-compress';
     const compressCls = classNames(
       prefixCls,
       className,
