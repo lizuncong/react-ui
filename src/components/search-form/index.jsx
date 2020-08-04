@@ -5,23 +5,7 @@ import classNames from 'classnames';
 import FormItems from './components/form';
 import SearchResult from './components/search-result';
 import './style';
-import { prefixCls } from './utils';
-
-// 转换数据，将formItem: [{ type: 'input', dataIndex: 'sku' }]转成
-// { sku: { type: 'input', dataIndex: 'sku', ...rest} }
-const transformData = (data = []) => {
-  const mapObj = {};
-  data.forEach((item) => {
-    if (item.type === 'group') {
-      (item.group || []).forEach((op) => {
-        mapObj[op.dataIndex] = op;
-      });
-    } else {
-      mapObj[item.dataIndex] = item;
-    }
-  });
-  return mapObj;
-};
+import { prefixCls, transformData } from './utils';
 
 const SearchForm = memo(({
   defaultSearchValue = {}, formItems = [], searchValue = {}, onSearchValueChange,
