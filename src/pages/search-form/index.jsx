@@ -217,9 +217,10 @@ class Index extends React.PureComponent {
     const { searchValue } = this.state;
     return (
       <div className={styles.container}>
-        <div className="demo-title">上拉加载</div>
+        <div className="demo-title">搜索表单</div>
         <div className={styles.wrap}>
           <SearchForm
+            className={styles.searchForm}
             formItems={this.formItems}
             defaultSearchValue={defaultSearchValue}
             searchValue={searchValue}
