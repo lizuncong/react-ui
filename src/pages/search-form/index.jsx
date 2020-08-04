@@ -163,7 +163,7 @@ class Index extends React.PureComponent {
         ],
       },
       {
-        title: '加工厂',
+        title: '条件8',
         type: 'searchSelect', // 远程搜索，不需要传options。
         dataIndex: 'factoryIds',
         // autoSearch: true, // 开启自动搜索，条件一改变就搜索
@@ -171,7 +171,7 @@ class Index extends React.PureComponent {
         field: 'faQcSupplier',
       },
       {
-        title: '工厂(单选)',
+        title: '条件9(单选)',
         type: 'searchSelect', // 远程搜索，不需要传options。
         dataIndex: 'factoryId2',
         // autoSearch: true, // 开启自动搜索，条件一改变就搜索
