@@ -11,6 +11,12 @@
     height: 0;
     padding-top: 100%;
   }
+  &-add{
+    cursor: pointer;
+  }
+  &-hidden{
+    display: none;
+  }
   &-delete{
     position: absolute;
     top: -9px;
@@ -29,16 +35,12 @@
   &-filter{
     filter: blur(1px);
   }
-  &-progress-container{
+  &-progress{
     position: absolute;
     width: 80%;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    font-size: 10px;
-  }
-  &-progress{
-    width: 100%;
     height: 4px;
     border-radius: 3px;
     border: 1px solid rgba(0,0,0,0.1);
