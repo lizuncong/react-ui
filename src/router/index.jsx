@@ -5,7 +5,6 @@ import {
 import loadable from '@loadable/component';
 
 const AdminLayout = loadable(() => import(/* webpackChunkName: "adminLayout" */'../pages/layout/admin'));
-const DetailLayout = loadable(() => import(/* webpackChunkName: "detailLayout" */'../pages/layout/detail'));
 const Home = loadable(() => import(/* webpackChunkName: "home" */'../pages/home'));
 const App = loadable(() => import(/* webpackChunkName: "app" */'../App'));
 const SearchForm = loadable(() => import(/* webpackChunkName: "searchForm" */'../pages/search-form'));
@@ -20,16 +19,6 @@ class IRouter extends React.Component {
       <HashRouter>
         <App>
           <Switch>
-            <Route
-              path="/detail"
-              render={() => (
-                <DetailLayout>
-                  <Switch>
-                    {/* <Route path="/detail/order/detail" component={Login} /> */}
-                  </Switch>
-                </DetailLayout>
-              )}
-            />
             <Route
               path="/"
               render={() => (

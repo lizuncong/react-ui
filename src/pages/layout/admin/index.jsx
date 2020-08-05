@@ -1,6 +1,5 @@
 import React from 'react';
-import NavLeft from './navLeft/connect';
-import Header from './header/connect';
+import NavLeft from './navLeft';
 import styles from './index.module.less';
 
 export default class Index extends React.Component {
@@ -10,9 +9,7 @@ export default class Index extends React.Component {
       <div className={styles.container}>
         <NavLeft />
         <div className={styles.main}>
-          <Header />
           {children}
-          {/* <Footer /> */}
         </div>
       </div>
     );

@@ -17,28 +17,12 @@ class NavLeft extends React.Component {
   }
 
   componentWillMount() {
-    const { switchMenu } = this.props;
     const menuTreeNode = this.renderMenu(MenuConfig);
     const currentUrl = window.location.hash.replace(/#|\?.*$/g, '');
-    const menuItem = this.getMenuItemByUrl(currentUrl, MenuConfig);
-    if (menuItem) {
-      switchMenu({ menuId: menuItem.url, menuName: menuItem.title });
-    }
     this.setState({
       menuTreeNode,
       currentUrl,
     });
-  }
-
-  getMenuItemByUrl(url, menus) {
-    for (let i = 0; i < menus.length; i += 1) {
-      const menuItem = menus[i];
-      if ((!menuItem.children || !menuItem.children.length) && url.indexOf(menuItem.url) > -1) {
-        return menuItem;
-      } if (menuItem.children && menuItem.children.length) {
-        return this.getMenuItemByUrl(url, menuItem.children);
-      }
-    }
   }
 
   // 菜单渲染
@@ -60,9 +44,6 @@ class NavLeft extends React.Component {
   }
 
   handleClick(menuItem) {
-    const { switchMenu } = this.props;
-    const menuName = menuItem.item.props.children.props.children;
-    switchMenu({ menuId: menuItem.url, menuName });
     this.setState({
       currentUrl: menuItem.key,
     });
@@ -73,7 +54,6 @@ class NavLeft extends React.Component {
     return (
       <div className={styles.navLeftContent}>
         <div className={styles.logo}>
-          <img src="/assets/logo-ant.svg" alt="" />
           <h1>React UI</h1>
         </div>
         <Menu
