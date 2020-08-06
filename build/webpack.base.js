@@ -88,7 +88,7 @@ module.exports = (mode) => {
               },
             },
             {
-              test: /\.(eot|ttf|svg|woff)$/i,
+              test: /\.(eot|ttf|svg|woff|mp4)$/i,
               use: {
                 loader: 'file-loader',
                 options: {
