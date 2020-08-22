@@ -86,7 +86,7 @@ class Upload extends React.PureComponent {
             <Image
               key={index}
               isCompressing={fileObj.originFile.compressing}
-              src={fileObj.compressBase64 ? fileObj.compressBase64 : fileObj.originFile.url}
+              src={fileObj.compressBase64 || fileObj.originFile.url}
               onDelete={() => {
                 fileObjs.splice(index, 1);
                 this.setState({
