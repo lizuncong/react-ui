@@ -21,7 +21,7 @@ class Index extends React.PureComponent {
         <div className={styles.wrap}>
           <Collapse
             className={styles.block}
-            title="质检异常"
+            title="默认展开"
             show={show}
             showDownIcon
             onDownIconClick={() => { this.setState({ show: !show }); }}

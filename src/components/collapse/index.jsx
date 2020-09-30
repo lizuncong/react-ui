@@ -44,7 +44,9 @@ const Index = memo(({
             <span
               className={`${prefixCls}-btn`}
               onClick={() => {
+                console.log('isTransitioning...', isTransitioning);
                 if (isTransitioning) return;
+                console.log('btn...click...');
                 setIsTransitioning(true);
                 const box = contentRef.current;
                 box.style.display = '';
@@ -72,6 +74,7 @@ const Index = memo(({
         className={classNames(`${prefixCls}-body`, bodyCls)}
         ref={contentRef}
         onTransitionEnd={() => {
+          console.log('onTransitionEnd....')
           setIsTransitioning(false);
           const box = contentRef.current;
           box.classList.remove(`${prefixCls}-active`);
