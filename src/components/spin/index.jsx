@@ -15,7 +15,7 @@ const Index = ({ className, size, tip }) => {
       [`${prefixCls}-spinning`]: spinning,
     },
     className,
-  )
+  );
   return (
     <div>Spin加载中....</div>
   );

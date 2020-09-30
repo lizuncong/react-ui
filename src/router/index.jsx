@@ -12,6 +12,7 @@ const ImageCompress = loadable(() => import(/* webpackChunkName: "imageCompress"
 const PullRefresh = loadable(() => import(/* webpackChunkName: "pullRefresh" */'../pages/pull-refresh'));
 const Spin = loadable(() => import(/* webpackChunkName: "spin" */'../pages/spin'));
 const VirtualScroll = loadable(() => import(/* webpackChunkName: "virtual-scroll" */'../pages/virtual-scroll'));
+const TransFormTable = loadable(() => import(/* webpackChunkName: "transform-table" */'../pages/transform-table'));
 
 class IRouter extends React.Component {
   render() {
@@ -30,6 +31,7 @@ class IRouter extends React.Component {
                     <Route path="/components/pull-refresh" component={PullRefresh} />
                     <Route path="/components/spin" component={Spin} />
                     <Route path="/components/virtual-scroll" component={VirtualScroll} />
+                    <Route path="/components/transform-table" component={TransFormTable} />
                     <Redirect to="/home" />
                     {/* <Route component={NotFound} /> */}
                   </Switch>

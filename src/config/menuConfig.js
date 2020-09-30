@@ -29,6 +29,11 @@ const menuList = [
         menuId: '1005',
         url: '/components/virtual-scroll',
       },
+      {
+        title: '表格倒置',
+        menuId: '1006',
+        url: '/components/transform-table',
+      },
     ],
   },
 ];
