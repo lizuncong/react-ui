@@ -13,6 +13,7 @@ const PullRefresh = loadable(() => import(/* webpackChunkName: "pullRefresh" */'
 const Spin = loadable(() => import(/* webpackChunkName: "spin" */'../pages/spin'));
 const VirtualScroll = loadable(() => import(/* webpackChunkName: "virtual-scroll" */'../pages/virtual-scroll'));
 const TransFormTable = loadable(() => import(/* webpackChunkName: "transform-table" */'../pages/transform-table'));
+const Collapse = loadable(() => import(/* webpackChunkName: "collapse" */'../pages/collapse'));
 
 class IRouter extends React.Component {
   render() {
@@ -32,6 +33,7 @@ class IRouter extends React.Component {
                     <Route path="/components/spin" component={Spin} />
                     <Route path="/components/virtual-scroll" component={VirtualScroll} />
                     <Route path="/components/transform-table" component={TransFormTable} />
+                    <Route path="/components/collapse" component={Collapse} />
                     <Redirect to="/home" />
                     {/* <Route component={NotFound} /> */}
                   </Switch>

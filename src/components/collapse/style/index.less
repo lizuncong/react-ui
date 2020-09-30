@@ -1,0 +1,32 @@
+@collapse-prefix-cls: ~'rui-collapse';
+.@{collapse-prefix-cls}{
+  &-header{
+    display: flex;
+  }
+  &-left{
+    flex: 1;
+  }
+  &-right{
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  &-btn{
+    user-select: none;
+    cursor: pointer;
+    color: #1890FF;
+    transition: all .3s;
+    margin-left: 12px;
+  }
+  &-active{
+    overflow: hidden !important;
+    transition: all .3s;
+  }
+  &-body{
+    overflow: hidden;
+  }
+}
+
+
+
+

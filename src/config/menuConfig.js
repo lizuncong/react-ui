@@ -34,6 +34,11 @@ const menuList = [
         menuId: '1006',
         url: '/components/transform-table',
       },
+      {
+        title: '折叠面板',
+        menuId: '1007',
+        url: '/components/collapse',
+      },
     ],
   },
 ];

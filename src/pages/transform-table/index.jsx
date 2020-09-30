@@ -67,6 +67,9 @@ class Index extends React.PureComponent {
     return (
       <div className={styles.container}>
         <div className="demo-title">表格倒置</div>
+        <div className="description">
+          如果后端返回的数据是按照列的格式返回，则可以使用这个组件渲染
+        </div>
         <div className={styles.wrap}>
           <TransFormTable
             colWidth={100}
