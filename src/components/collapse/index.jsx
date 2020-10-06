@@ -3,6 +3,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import prefixCls from './utils';
+import Event from './Event';
 import './style';
 
 const Index = memo(({
@@ -73,8 +74,11 @@ const Index = memo(({
       <div
         className={classNames(`${prefixCls}-body`, bodyCls)}
         ref={contentRef}
+        onAnimationEnd={() => {
+          console.log('onAnimationEnd...');
+        }}
         onTransitionEnd={() => {
-          console.log('onTransitionEnd....')
+          console.log('onTransitionEnd....');
           setIsTransitioning(false);
           const box = contentRef.current;
           box.classList.remove(`${prefixCls}-active`);
