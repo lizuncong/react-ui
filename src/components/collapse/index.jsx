@@ -61,7 +61,7 @@ const Index = memo(({
                 setTimeout(() => {
                   box.style.height = `${!show ? height : 0}px`;
                   box.classList.add(`${prefixCls}-active`);
-                }, 0);
+                }, 30);
                 onDownIconClick();
               }}
             >

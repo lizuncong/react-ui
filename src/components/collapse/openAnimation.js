@@ -3,7 +3,7 @@ import cssAnimation from './css-animation';
 function animate(node, show, done) {
   let height;
   let requestAnimationFrameId;
-  return cssAnimation(node, 'ant-motion-collapse-legacy', {
+  return cssAnimation(node, 'rui-collapse-legacy', {
     start() {
       if (!show) {
         node.style.height = `${node.offsetHeight}px`;
