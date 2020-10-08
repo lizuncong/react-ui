@@ -6,7 +6,7 @@ class Index extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      show: false,
+      show: true,
     };
   }
 
@@ -21,7 +21,7 @@ class Index extends React.PureComponent {
         <div className={styles.wrap}>
           <Collapse
             className={styles.block}
-            title="默认展开"
+            header="默认展开"
             show={show}
             showDownIcon
             onDownIconClick={() => { this.setState({ show: !show }); }}

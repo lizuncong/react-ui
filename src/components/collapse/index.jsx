@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import prefixCls from './utils';
-import Event from './Event';
+import animation from './action';
 import './style';
 
 const Index = memo(({
@@ -12,7 +12,7 @@ const Index = memo(({
   className,
   show,
   showDownIcon,
-  title,
+  header,
   onDownIconClick,
   headerRight,
   children,
@@ -22,19 +22,22 @@ const Index = memo(({
 
   useEffect(() => {
     const box = contentRef.current;
-    if (show && box.style.display === 'none') {
-      box.style.display = '';
-    }
+    animation(box, `${prefixCls}-legacy`, show);
   }, [show]);
 
   const cls = classNames(
     prefixCls,
     className,
   );
+  const contentCls = classNames(`${prefixCls}-body`, bodyCls, {
+    [`${prefixCls}-content-show`]: show,
+    [`${prefixCls}-content-hide`]: !show,
+  });
+  console.log('render....', show);
   return (
     <div className={cls}>
       <div className={classNames(`${prefixCls}-header`, headerCls)}>
-        <div className={`${prefixCls}-left`}>{title}</div>
+        <div className={`${prefixCls}-left`}>{header}</div>
         <div className={`${prefixCls}-right`}>
           {
             headerRight
@@ -45,23 +48,7 @@ const Index = memo(({
             <span
               className={`${prefixCls}-btn`}
               onClick={() => {
-                console.log('isTransitioning...', isTransitioning);
                 if (isTransitioning) return;
-                console.log('btn...click...');
-                setIsTransitioning(true);
-                const box = contentRef.current;
-                box.style.display = '';
-                let height;
-                if (show) {
-                  box.style.height = `${box.offsetHeight}px`;
-                } else {
-                  height = box.offsetHeight;
-                  box.style.height = 0;
-                }
-                setTimeout(() => {
-                  box.style.height = `${!show ? height : 0}px`;
-                  box.classList.add(`${prefixCls}-active`);
-                }, 30);
                 onDownIconClick();
               }}
             >
@@ -72,18 +59,10 @@ const Index = memo(({
         </div>
       </div>
       <div
-        className={classNames(`${prefixCls}-body`, bodyCls)}
+        className={contentCls}
         ref={contentRef}
-        onAnimationEnd={() => {
-          console.log('onAnimationEnd...');
-        }}
         onTransitionEnd={() => {
-          console.log('onTransitionEnd....');
           setIsTransitioning(false);
-          const box = contentRef.current;
-          box.classList.remove(`${prefixCls}-active`);
-          box.style.display = show ? '' : 'none';
-          box.style.height = '';
         }}
       >
         {children}
