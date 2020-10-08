@@ -20,10 +20,10 @@ const Index = memo(({
   const [isTransitioning, setIsTransitioning] = useState(false);
   const contentRef = useRef(null);
 
-  useEffect(() => {
-    const box = contentRef.current;
-    animation(box, `${prefixCls}-legacy`, show);
-  }, [show]);
+  // useEffect(() => {
+  //   const box = contentRef.current;
+  //   animation(box, `${prefixCls}-legacy`, show);
+  // }, [show]);
 
   const cls = classNames(
     prefixCls,
@@ -49,7 +49,16 @@ const Index = memo(({
               className={`${prefixCls}-btn`}
               onClick={() => {
                 if (isTransitioning) return;
-                onDownIconClick();
+                const box = contentRef.current;
+                if (!show) {
+                  onDownIconClick();
+                }
+                animation(box, `${prefixCls}-legacy`, !show, () => {
+                  if (show) {
+                    onDownIconClick();
+                  }
+                });
+                // onDownIconClick();
               }}
             >
               {show ? '收起' : '展开'}

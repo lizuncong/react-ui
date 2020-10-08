@@ -1,4 +1,4 @@
-const animation = (target, transitionClassName, show) => {
+const animation = (target, transitionClassName, show, end) => {
   let height;
   let requestAnimationFrameId;
   const activeClassName = `${transitionClassName}-active`;
@@ -22,6 +22,10 @@ const animation = (target, transitionClassName, show) => {
     }
     target.style.height = '';
     target.style.opacity = '';
+    target.style.display = '';
+    if (end) {
+      end();
+    }
   };
   target.addEventListener('transitionend', target.endListener, false);
 
@@ -32,6 +36,7 @@ const animation = (target, transitionClassName, show) => {
     target.style.opacity = '1';
   } else {
     // 展开时，拿到元素的高度，然后即刻设置高度为0
+    target.style.display = 'block';
     height = target.offsetHeight;
     target.style.height = '0px';
     target.style.opacity = '0';
