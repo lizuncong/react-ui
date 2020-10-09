@@ -1,15 +1,18 @@
-const animation = (target, transitionClassName, show, end) => {
+const animation = (target, transitionClassName, show) => {
   let height;
   let requestAnimationFrameId;
   const activeClassName = `${transitionClassName}-active`;
 
-  // 注册transitionend事件。
-  target.endListener = (e) => {
-    if (target.rcAnimTimeout) {
-      clearTimeout(target.rcAnimTimeout);
-      target.rcAnimTimeout = null;
-    }
+  if (target.endListener) {
+    target.endListener();
+  }
 
+  target.endListener = () => {
+    if (target.animTimeout) {
+      clearTimeout(target.animTimeout);
+      target.animTimeout = null;
+    }
+    console.log('transition....end....');
     target.classList.remove(transitionClassName);
     target.classList.remove(activeClassName);
 
@@ -23,20 +26,16 @@ const animation = (target, transitionClassName, show, end) => {
     target.style.height = '';
     target.style.opacity = '';
     target.style.display = '';
-    if (end) {
-      end();
-    }
   };
   target.addEventListener('transitionend', target.endListener, false);
 
   // 动画开始
-  console.log('show....', show, target.offsetHeight);
+  console.log('show....', show);
   if (!show) {
+    target.style.display = 'block';
     target.style.height = `${target.offsetHeight}px`;
     target.style.opacity = '1';
   } else {
-    // 展开时，拿到元素的高度，然后即刻设置高度为0
-    target.style.display = 'block';
     height = target.offsetHeight;
     target.style.height = '0px';
     target.style.opacity = '0';
@@ -44,10 +43,9 @@ const animation = (target, transitionClassName, show, end) => {
   target.classList.add(transitionClassName);
 
   // 动画过程
-  target.rcAnimTimeout = setTimeout(() => {
-    target.rcAnimTimeout = null;
+  target.animTimeout = setTimeout(() => {
+    target.animTimeout = null;
     target.classList.add(activeClassName);
-    // setTimeout(active, 0);
     if (requestAnimationFrameId) {
       window.cancelAnimationFrame(requestAnimationFrameId);
     }
@@ -55,7 +53,6 @@ const animation = (target, transitionClassName, show, end) => {
       target.style.height = `${show ? height : 0}px`;
       target.style.opacity = show ? '1' : '0';
     });
-    // 30ms for firefox
   }, 30);
 };
 

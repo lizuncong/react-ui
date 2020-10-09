@@ -1,5 +1,6 @@
 import React, {
-  memo, useRef, useState, useEffect,
+  memo, useRef, useEffect,
+  useLayoutEffect,
 } from 'react';
 import classNames from 'classnames';
 import prefixCls from './utils';
@@ -17,12 +18,29 @@ const Index = memo(({
   headerRight,
   children,
 }) => {
-  const [isTransitioning, setIsTransitioning] = useState(false);
   const contentRef = useRef(null);
 
+  useLayoutEffect(() => {
+    const target = contentRef.current;
+    if (!target.didMount) {
+      // 模拟componentDidMount
+      target.didMount = true;
+    } else {
+      // 模拟componentDidUpdate
+      animation(target, `${prefixCls}-legacy`, show);
+    }
+  }, [show]);
+
+  // 使用useEffect会闪烁
   // useEffect(() => {
-  //   const box = contentRef.current;
-  //   animation(box, `${prefixCls}-legacy`, show);
+  //   const target = contentRef.current;
+  //   if (!target.didMount) {
+  //     // 模拟componentDidMount
+  //     target.didMount = true;
+  //   } else {
+  //     // 模拟componentDidUpdate
+  //     animation(target, `${prefixCls}-legacy`, show);
+  //   }
   // }, [show]);
 
   const cls = classNames(
@@ -48,17 +66,7 @@ const Index = memo(({
             <span
               className={`${prefixCls}-btn`}
               onClick={() => {
-                if (isTransitioning) return;
-                const box = contentRef.current;
-                if (!show) {
-                  onDownIconClick();
-                }
-                animation(box, `${prefixCls}-legacy`, !show, () => {
-                  if (show) {
-                    onDownIconClick();
-                  }
-                });
-                // onDownIconClick();
+                onDownIconClick();
               }}
             >
               {show ? '收起' : '展开'}
@@ -70,9 +78,6 @@ const Index = memo(({
       <div
         className={contentCls}
         ref={contentRef}
-        onTransitionEnd={() => {
-          setIsTransitioning(false);
-        }}
       >
         {children}
       </div>
