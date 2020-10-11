@@ -14,6 +14,7 @@ const Spin = loadable(() => import(/* webpackChunkName: "spin" */'../pages/spin'
 const VirtualScroll = loadable(() => import(/* webpackChunkName: "virtual-scroll" */'../pages/virtual-scroll'));
 const TransFormTable = loadable(() => import(/* webpackChunkName: "transform-table" */'../pages/transform-table'));
 const Collapse = loadable(() => import(/* webpackChunkName: "collapse" */'../pages/collapse'));
+const Demo = loadable(() => import(/* webpackChunkName: "collapse" */'../pages/demo'));
 
 class IRouter extends React.Component {
   render() {
@@ -27,6 +28,7 @@ class IRouter extends React.Component {
                 <AdminLayout>
                   <Switch>
                     <Route path="/home" component={Home} />
+                    <Route path="/components/demo" component={Demo} />
                     <Route path="/components/search-form" component={SearchForm} />
                     <Route path="/components/image-compress" component={ImageCompress} />
                     <Route path="/components/pull-refresh" component={PullRefresh} />
