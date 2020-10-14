@@ -36,21 +36,40 @@ class Index extends React.PureComponent {
           >
             点击切换元素个数
           </span>
-          {/* <div className={styles.flexWrap}> */}
-          {/*  <div className={styles.flexContainer}> */}
-          {/*    { */}
-          {/*      (showMore ? [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] : [1, 2, 3]).map((item) => ( */}
-          {/*        <div */}
-          {/*          className={styles.square} */}
-          {/*          key={item} */}
-          {/*        > */}
-          {/*          {item} */}
-          {/*        </div> */}
-          {/*      )) */}
-          {/*    } */}
-          {/*  </div> */}
-          {/* </div> */}
           <div className={styles.flexContainer}>
+            {
+              (showMore ? [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] : [1, 2, 3]).map((item) => (
+                <div
+                  className={styles.square}
+                  key={item}
+                >
+                  {item}
+                </div>
+              ))
+            }
+          </div>
+          <div className="description">
+            解决方法1. 再用一层容器包住flex容器，并设置flex容器的display为inline-flex而不是flex。
+            外围容器设置text-align: center
+          </div>
+          <div className={styles.flexWrap}>
+            <div className={styles.flexContainer1}>
+              {
+                (showMore ? [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] : [1, 2, 3]).map((item) => (
+                  <div
+                    className={styles.square}
+                    key={item}
+                  >
+                    {item}
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+          <div className="description">
+            解决方法2. 不使用flex布局，设置子元素display为inline-block
+          </div>
+          <div className={styles.blockContainer}>
             {
               (showMore ? [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] : [1, 2, 3]).map((item) => (
                 <div
