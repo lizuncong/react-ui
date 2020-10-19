@@ -14,10 +14,10 @@ function convert(list, parentKey, currentKey, rootValue) {
     (keyObj[item.parentId] || (keyObj[item.parentId] = [])).push(item);
   });
 
-  const getChildren = (tree) => {
-    if (keyObj[tree.id]) {
-      tree.children = keyObj[tree.id];
-      tree.children.forEach(getChildren);
+  const getChildren = (node) => {
+    if (keyObj[node.id]) {
+      node.children = keyObj[node.id];
+      node.children.forEach(getChildren);
     }
   };
 
