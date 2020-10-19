@@ -1,6 +1,7 @@
 import React from 'react';
 import Demo from './demo';
 import styles from './index.module.less';
+import './test';
 
 class Index extends React.PureComponent {
   constructor(props) {
