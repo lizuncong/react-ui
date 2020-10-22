@@ -8,7 +8,7 @@ const Index = memo(() => (
       placeholder
     </div>
     <div className="wrap">
-      ohuo
+      <div id="header">变量用法</div>
     </div>
   </div>
 ));
