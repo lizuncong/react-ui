@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import Test from './test';
 import './index.less';
 
 const Index = memo(() => (
@@ -8,7 +9,16 @@ const Index = memo(() => (
       placeholder
     </div>
     <div className="wrap">
-      <div id="header">变量用法</div>
+      <div id="header">
+        变量用法
+        <button>按钮</button>
+      </div>
+      <div>
+        <div className="circle">1</div>
+        <div className="circle">2</div>
+        <div className="circle">3</div>
+      </div>
+      <Test list={undefined} />
     </div>
   </div>
 ));

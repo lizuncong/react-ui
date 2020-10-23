@@ -10,8 +10,178 @@
   }
 }
 
-@nice-blue: #5B83AD;
-#header{
-  color: @nice-blue;
+@width: 100px;
+@height: @width + 100px;
+@bg_color: #e8e8e8;
+@bg: ~'color'; // 显然这样使用不行
+.bordered{
+  border: 1px solid green;
+}
+//#header{
+//  width: ~`(function(){ return "200px"} )()`;
+//  height: @height;
+//  background-color: @bg_color;
+//  .bordered(); // Mixins
+//}
+// 注意比较mixin和extend的差别，可以发现，mixin是将所有的属性拷贝到选择器里。而extend则不是。
+// 比如.bordered()会将.bordered的所有css属性拷贝到#header里面。而&:extend(.inline)则表示
+// nav ul 选择器和.inline选择器复用同一套属性。
+// 因此extend比mixin节省代码量
+nav ul {
+  &:extend(.inline);
+  background: blue;
+}
+.inline {
+  color: red;
+}
+// 编译后：
+nav ul {
+  background: blue;
+}
+.inline,
+nav ul {
+  color: red;
 }
 
+// 注意#custom这种mixins方式和上面的.bordered mixin方式的差异。
+// #custom带了()括号。这种方式是不会打包进css中的，.bordered这种方式是会打包进css中的。
+// 比如#custome这里只有.button使用到了，.tab没有使用的话，是不会打包进css中的。就好比js中的模块
+// 使用到才打包进去，没使用到就不打包咯
+// Maps，less3.5以上支持
+.colors(){
+  primary: blue;
+  lzc: red;
+}
+#custom(){
+  width: ~`(function(){ return "200px"} )()`;
+  height: @height;
+  background-color: @bg_color;
+  color: blue;
+  .bordered(); // Mixins
+  .button{
+    display: block;
+    border: 1px solid black;
+    background-color: grey;
+    &:hover{
+      background-color: white;
+    }
+  }
+  .tab{
+    background-color: red;
+  }
+}
+#header  button{
+  color: .colors[lzc];
+  #custom .button();
+}
+
+// 多媒体查询写法
+.component{
+  width: 300px;
+  @media(min-width: 768px){
+    width: 600px;
+    @media(min-resolution: 192dpi){
+      background-color: @bg_color;
+    }
+  }
+  @media(min-width: 1280px){
+    width: 800px;
+  }
+}
+
+// 编译后：
+.component{
+  width: 300px;
+}
+
+@media(min-width: 768px){
+  .component{
+    width: 600px;
+  }
+}
+@media(min-width: 768px) and (min-resolution: 192dpi){
+  .component{
+    background-color: @bg_color;
+  }
+}
+
+@media(min-width: 1280px) {
+  .component{
+    width: 800px;
+  }
+}
+
+// Escaping，可以用作变量的值或者css属性
+@min768: ~'(min-width: 768px)';
+.element{
+  @media @min768{
+    font-size: 1.2rem;
+  }
+}
+// 编译后：
+@media(min-width: 768px){
+  .element{
+    font-size: 1.2rem;
+  }
+}
+
+
+// Scope
+@var: red;
+
+#page{
+  @var: white;
+  #header{
+    color: @var; // white
+  }
+}
+// 或者：
+//@var: red;
+//
+//#page {
+//  #header {
+//    color: @var; // white
+//  }
+//  @var: white;
+//}
+
+.circle{
+  width: 80px;
+  height: 80px;
+  display: inline-block;
+  background-color: red;
+  border-right: 1px solid black;
+  & + & {
+    margin-left: 20px;
+  }
+}
+
+
+// 有括号和没括号mixin的差别。
+.my-mixin {
+  color: black;
+}
+.my-other-mixin() {
+  background: white;
+}
+.class {
+  .my-mixin();
+  .my-other-mixin();
+}
+
+// 编译后：
+.my-mixin {
+  color: black;
+}
+.class {
+  color: black;
+  background: white;
+}
+
+// 可以发现，有括号的mixin是不会被打包进css中的，比如my-other-mixin()。无括号的mixin是会被打包进css中的，如my-mixin
+.foo (@bg: #f5f5f5; @color: #900) {
+  background: @bg;
+  color: @color;
+}
+
+//.foo()
