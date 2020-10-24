@@ -1,5 +1,4 @@
 import React, { memo } from 'react';
-import Test from './test';
 import './index.less';
 
 const Index = memo(() => (
@@ -18,7 +17,6 @@ const Index = memo(() => (
         <div className="circle">2</div>
         <div className="circle">3</div>
       </div>
-      <Test list={undefined} />
     </div>
   </div>
 ));
