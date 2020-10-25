@@ -9,8 +9,7 @@ const Index = memo(() => (
     </div>
     <div className="wrap">
       <div id="header">
-        变量用法
-        <button>按钮</button>
+        <div>变量用法</div>
       </div>
       <div>
         <div className="circle">1</div>

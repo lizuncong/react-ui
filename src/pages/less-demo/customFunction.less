@@ -1,0 +1,19 @@
+//@lzc: ~`(function() {
+//  console.log('this==========', this);
+//  this.customAdd = function (number) {
+//    return (number + 100) + 'px';
+//  }
+//})()`;
+
+
+.customMixin(){
+@lzc: ~`(function() {
+    console.log('this==========', this);
+    this.customAdd = function (number) {
+      return (number + 100) + 'px';
+    }
+  })()`;
+}
+
+// 如果不执行这句，在index.less中会直接报错：ReferenceError: customAdd is not defined
+.customMixin(); // 不要漏了分号，不然会报错。
