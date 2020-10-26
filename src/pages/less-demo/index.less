@@ -10,15 +10,7 @@
   }
 }
 
-@import "mixins";
-
-@var: 50vh/2;
+@import "extend.less";
 #header{
-  background: gray;
-  width: calc(50% + (@var - 20px));
-  .border;
-  .padding();
-  #color;
-  #font-size();
+  &:extend(.colors);
 }
-
