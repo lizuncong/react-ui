@@ -9,8 +9,21 @@
     background: white;
   }
 }
+.grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 100px);
+  grid-row-gap: 20px;
+  grid-column-gap: 20px;
+  width: 100%;
+}
 
-@import "extend.less";
+@import "./colors";
+
 #header{
-  &:extend(.colors);
+  //background-color: @blue-1;
+  //background-color: @blue-1;
+  //background-color: @blue-1;
+  //background-color: @blue-1;
+  //background-color: @blue-1;
+  //background-color: @blue-1;
 }

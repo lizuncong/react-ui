@@ -1,5 +1,5 @@
 /* stylelint-disable no-duplicate-selectors */
-//@import "bezierEasing";
+@import "bezierEasing";
 @import "tinyColor";
 
 // We create a very complex algorithm which take the place of original tint/shade color system
@@ -7,7 +7,7 @@
 // and create an entire color palette magicly by inputing just a single primary color.
 // We are using bezier-curve easing function and some color manipulations like tint/shade/darken/spin
 .colorPaletteMixin() {
-  @lzccustom: ~`(function() {
+@functions: ~`(function() {
   var hueStep = 2;
   var saturationStep = 0.16;
   var saturationStep2 = 0.05;
@@ -67,11 +67,13 @@
     var isLight = index <= 6;
     var hsv = tinycolor(color).toHsv();
     var i = isLight ? lightColorCount + 1 - index : index - lightColorCount - 1;
-    return tinycolor({
+    var retult = tinycolor({
       h: getHue(hsv, i, isLight),
       s: getSaturation(hsv, i, isLight),
       v: getValue(hsv, i, isLight),
-    }).toHexString();
+    }).toHexString()
+    console.log('@orange-'+index + ':' + retult + ';')
+    return retult;
   };
 })()`;
 }
