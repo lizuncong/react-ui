@@ -10,6 +10,21 @@ ul,li{
 input{
   outline: none;
 }
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box; // 1
+}
+
+
+[tabindex='-1']:focus {
+  outline: none !important;
+}
+
+//:focus {
+//  outline: none;
+//}
 .container{
   flex: 1;
   border-radius:8px;
