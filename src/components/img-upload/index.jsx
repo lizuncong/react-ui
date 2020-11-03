@@ -10,7 +10,6 @@ class Upload extends React.PureComponent {
   constructor(props) {
     super(props);
     this.onInputChange = this.onInputChange.bind(this);
-    this.onPaste = this.onPaste.bind(this);
     this.state = {
       fileObjs: [], // item { originFile, compressBase64, compressFile }
     };
@@ -74,8 +73,15 @@ class Upload extends React.PureComponent {
     }
   }
 
-  onPaste() {
-    console.log('image..compres..paste..');
+  // 暴露给父组件调用的添加图片方法
+  addFile(file) {
+    const { fileObjs } = this.state;
+    const { maxLength } = this.props;
+    if (fileObjs.length < maxLength) {
+      this.onInputChange({
+        0: file,
+      });
+    }
   }
 
   render() {

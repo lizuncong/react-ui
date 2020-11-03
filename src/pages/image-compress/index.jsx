@@ -6,7 +6,8 @@ import styles from './index.module.less';
 const Index = () => {
   const [fileObjs, setFileObjs] = useState([]);
   const compressRef = useRef(null);
-  console.log('fileObjs...', fileObjs);
+  const compressRef2 = useRef(null);
+
   return (
     <div className={styles.container}>
       <div className={styles.row}>
@@ -21,18 +22,15 @@ const Index = () => {
       </div>
       <Paste
         onPaste={(file) => {
-          console.log('file...', file);
-          compressRef.current.onInputChange({
-            0: file,
-          });
+          compressRef.current.addFile(file);
         }}
       >
         <div
           className={styles.row}
         >
-          <div className={styles.title}>粘贴图片1</div>
+          <div className={styles.title}>剪切并粘贴图片1</div>
           <ImageCompress
-            ref={(reference) => compressRef.current = reference}
+            ref={(reference) => { compressRef.current = reference; }}
             maxLength={5}
             maxSize={300}
             onChange={(files) => {
@@ -43,15 +41,16 @@ const Index = () => {
       </Paste>
       <Paste
         onPaste={(file) => {
-          console.log('file...', file);
+          compressRef2.current.addFile(file);
         }}
       >
         <div
           className={styles.row}
         >
-          <div className={styles.title}>粘贴图片2</div>
+          <div className={styles.title}>剪切并粘贴图片2</div>
           <ImageCompress
             maxLength={5}
+            ref={(reference) => { compressRef2.current = reference; }}
             maxSize={300}
             onChange={(files) => {
               setFileObjs(files);
