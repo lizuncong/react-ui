@@ -40,6 +40,10 @@ const menuList = [
         title: '折叠面板',
         url: '/components/collapse',
       },
+      {
+        title: '图片加载失败重载',
+        url: '/components/image',
+      },
     ].map((child, index) => ({ ...child, menuId: index + 1000 })),
   },
 ];

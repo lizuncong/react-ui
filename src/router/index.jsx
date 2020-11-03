@@ -16,6 +16,7 @@ const TransFormTable = loadable(() => import(/* webpackChunkName: "transform-tab
 const Collapse = loadable(() => import(/* webpackChunkName: "collapse" */'../pages/collapse'));
 const Demo = loadable(() => import(/* webpackChunkName: "demo" */'../pages/demo'));
 const LessDemo = loadable(() => import(/* webpackChunkName: "lessDemo" */'../pages/less-demo'));
+const Image = loadable(() => import(/* webpackChunkName: "lessDemo" */'../pages/image'));
 
 class IRouter extends React.Component {
   render() {
@@ -38,6 +39,7 @@ class IRouter extends React.Component {
                     <Route path="/components/virtual-scroll" component={VirtualScroll} />
                     <Route path="/components/transform-table" component={TransFormTable} />
                     <Route path="/components/collapse" component={Collapse} />
+                    <Route path="/components/image" component={Image} />
                     <Redirect to="/home" />
                     {/* <Route component={NotFound} /> */}
                   </Switch>
