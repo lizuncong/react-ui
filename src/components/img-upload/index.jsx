@@ -10,9 +10,17 @@ class Upload extends React.PureComponent {
   constructor(props) {
     super(props);
     this.onInputChange = this.onInputChange.bind(this);
+    this.onPaste = this.onPaste.bind(this);
     this.state = {
       fileObjs: [], // item { originFile, compressBase64, compressFile }
     };
+  }
+
+  componentDidMount() {
+    const { ref } = this.props;
+    if (ref) {
+      ref(this);
+    }
   }
 
   compressCallBack(file, fileObj, result) {
@@ -64,6 +72,10 @@ class Upload extends React.PureComponent {
     if (onChange) {
       onChange(fileObjs);
     }
+  }
+
+  onPaste() {
+    console.log('image..compres..paste..');
   }
 
   render() {

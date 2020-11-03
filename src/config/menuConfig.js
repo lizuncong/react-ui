@@ -8,10 +8,10 @@ const menuList = [
         title: 'demo',
         url: '/components/demo',
       },
-      {
-        title: 'Less高级用法学习',
-        url: '/components/less',
-      },
+      // {
+      //   title: 'Less高级用法学习',
+      //   url: '/components/less',
+      // },
       {
         title: '搜索表单',
         url: '/components/search-form',
