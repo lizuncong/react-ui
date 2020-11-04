@@ -44,6 +44,10 @@ const menuList = [
         title: '图片加载失败重载',
         url: '/components/image',
       },
+      {
+        title: '长文本截取',
+        url: '/components/ellipse',
+      },
     ].map((child, index) => ({ ...child, menuId: index + 1000 })),
   },
 ];

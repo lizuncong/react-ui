@@ -16,7 +16,8 @@ const TransFormTable = loadable(() => import(/* webpackChunkName: "transform-tab
 const Collapse = loadable(() => import(/* webpackChunkName: "collapse" */'../pages/collapse'));
 const Demo = loadable(() => import(/* webpackChunkName: "demo" */'../pages/demo'));
 const LessDemo = loadable(() => import(/* webpackChunkName: "lessDemo" */'../pages/less-demo'));
-const Image = loadable(() => import(/* webpackChunkName: "lessDemo" */'../pages/image'));
+const Image = loadable(() => import(/* webpackChunkName: "Image" */'../pages/image'));
+const Ellipse = loadable(() => import(/* webpackChunkName: "Image" */'../pages/ellipse'));
 
 class IRouter extends React.Component {
   render() {
@@ -40,6 +41,7 @@ class IRouter extends React.Component {
                     <Route path="/components/transform-table" component={TransFormTable} />
                     <Route path="/components/collapse" component={Collapse} />
                     <Route path="/components/image" component={Image} />
+                    <Route path="/components/ellipse" component={Ellipse} />
                     <Redirect to="/home" />
                     {/* <Route component={NotFound} /> */}
                   </Switch>
