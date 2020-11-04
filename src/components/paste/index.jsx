@@ -31,21 +31,35 @@ class Index extends React.PureComponent {
     const {
       children,
     } = this.props;
-    const { onFocus, tabIndex, onBlur } = children.props;
+    const {
+      onMouseLeave, onMouseEnter, onFocus, tabIndex, onBlur,
+    } = children.props;
     return React.cloneElement(children, {
-      tabIndex: tabIndex || '0', // 让不可聚焦的元素变得可聚焦
-      onFocus: (e) => {
-        if (onFocus) onFocus(e);
+      // tabIndex: tabIndex || '0', // 让不可聚焦的元素变得可聚焦
+      onMouseEnter: (e) => {
+        if (onMouseEnter) onMouseEnter(e);
         this.setState({
           isFocusing: true,
         });
       },
-      onBlur: (e) => {
-        if (onBlur) onBlur(e);
+      onMouseLeave: (e) => {
+        if (onMouseLeave) onMouseLeave(e);
         this.setState({
           isFocusing: false,
         });
       },
+      // onFocus: (e) => {
+      //   if (onFocus) onFocus(e);
+      //   this.setState({
+      //     isFocusing: true,
+      //   });
+      // },
+      // onBlur: (e) => {
+      //   if (onBlur) onBlur(e);
+      //   this.setState({
+      //     isFocusing: false,
+      //   });
+      // },
       onPaste: this.onPaste,
     });
   }

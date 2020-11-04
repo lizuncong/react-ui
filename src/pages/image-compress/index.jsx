@@ -30,7 +30,7 @@ const Index = () => {
         >
           <div className={styles.title}>剪切并粘贴图片1</div>
           <ImageCompress
-            ref={(reference) => { compressRef.current = reference; }}
+            onRef={(reference) => { compressRef.current = reference; }}
             maxLength={5}
             maxSize={300}
             onChange={(files) => {
@@ -50,7 +50,7 @@ const Index = () => {
           <div className={styles.title}>剪切并粘贴图片2</div>
           <ImageCompress
             maxLength={5}
-            ref={(reference) => { compressRef2.current = reference; }}
+            onRef={(reference) => { compressRef2.current = reference; }}
             maxSize={300}
             onChange={(files) => {
               setFileObjs(files);

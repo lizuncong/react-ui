@@ -16,9 +16,9 @@ class Upload extends React.PureComponent {
   }
 
   componentDidMount() {
-    const { ref } = this.props;
-    if (ref) {
-      ref(this);
+    const { onRef } = this.props;
+    if (onRef) {
+      onRef(this);
     }
   }
 
