@@ -14,7 +14,7 @@ class Index extends React.PureComponent {
         <div className="description">
           当文本内容过长时，截取文本并悬浮显示完整文本
         </div>
-        <div>
+        <div style={{ width: '400px' }}>
           <Ellipse
             value="这是一段长文本这是一段长文本这是一段长文本这是一段长文本这是一段长文本"
           />
