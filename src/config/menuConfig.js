@@ -48,6 +48,10 @@ const menuList = [
         title: '长文本截取',
         url: '/components/ellipse',
       },
+      {
+        title: '文章分页阅读',
+        url: '/components/article-pagination',
+      },
     ].map((child, index) => ({ ...child, menuId: index + 1000 })),
   },
 ];

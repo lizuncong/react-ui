@@ -18,6 +18,7 @@ const Demo = loadable(() => import(/* webpackChunkName: "demo" */'../pages/demo'
 const LessDemo = loadable(() => import(/* webpackChunkName: "lessDemo" */'../pages/less-demo'));
 const Image = loadable(() => import(/* webpackChunkName: "Image" */'../pages/image'));
 const Ellipse = loadable(() => import(/* webpackChunkName: "Image" */'../pages/ellipse'));
+const ArticlePage = loadable(() => import(/* webpackChunkName: "ArticlePage" */'../pages/article-pagination'));
 
 class IRouter extends React.Component {
   render() {
@@ -42,6 +43,7 @@ class IRouter extends React.Component {
                     <Route path="/components/collapse" component={Collapse} />
                     <Route path="/components/image" component={Image} />
                     <Route path="/components/ellipse" component={Ellipse} />
+                    <Route path="/components/article-pagination" component={ArticlePage} />
                     <Redirect to="/home" />
                     {/* <Route component={NotFound} /> */}
                   </Switch>
