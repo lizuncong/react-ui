@@ -12,37 +12,35 @@ import './style';
 const Index = memo(({
   random,
   src,
-  lazyLoad,
+  onClick,
+  onError,
+  className,
   width,
   height,
   size,
-  className,
 }) => {
-  const [innerRandom, setInnerRandom] = useState();
+  const split = (src || '').indexOf('?') > -1 ? '&ruiimg=' : '?ruiimg=';
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [success, setSuccess] = useState(false);
-  // 加载失败，点击重新加载按钮时，如果依旧加载失败，会发现loading显示时间过段以至于
-  // 肉眼看不出在loading，因此做个判断，强制至少 retryTime 后再关闭loading。
+  const [imgSrc, setImgSrc] = useState(src);
+  // 加载失败，点击重新加载按钮时，如果依旧加载失败，会发现loading显示时间过短以至于
+  // 肉眼看不出在loading，因此做个判断，强制至少 retryTime 毫秒 后再关闭loading。
   const refreshTimeRef = useRef(null);
   const retryTime = 1000; // 单位毫秒
 
   useEffect(() => {
-    // 如果开启了懒加载，即lazyLoad为true，则第一次加载图片时显示loading动画
-    if (lazyLoad) {
-      setLoading(true);
-    }
-  }, [lazyLoad]);
-
+    setImgSrc(src);
+    setError(false);
+    setLoading(false);
+  }, [src]);
   useEffect(() => {
+    // 没出错，则不需要刷新
+    if (!error) return;
     // 监听random变化，random用于外部引起的重新加载逻辑
-    if (!random || success) return;
-    setInnerRandom(random);
     refreshTimeRef.current = +new Date();
-    if (lazyLoad) {
-      setLoading(true);
-    }
-  }, [random, refreshTimeRef, success, lazyLoad]);
+    setLoading(true);
+    setImgSrc((prev) => (prev.indexOf(split) > -1 ? src : `${src}${split}${random}`));
+  }, [random, refreshTimeRef]);
 
   const containerStyle = {};
   if (width) {
@@ -56,6 +54,11 @@ const Index = memo(({
     containerStyle.height = `${size}px`;
   }
 
+  const errorOccur = () => {
+    setLoading(false);
+    setError(true);
+    if (onError) onError();
+  };
   const cls = classNames(
     prefixCls,
     className,
@@ -66,38 +69,34 @@ const Index = memo(({
       style={containerStyle}
     >
       <img
+        onClick={onClick}
         className={`${prefixCls}-img`}
-        src={success || !innerRandom ? src : `${src}?${innerRandom}`}
+        src={imgSrc}
         alt=""
-        onLoad={(e) => {
-          // 图片成功加载完成
+        onLoad={() => {
           setLoading(false);
-          setSuccess(true);
+          setError(false);
         }}
-        onError={(e) => {
+        onError={() => {
           const currentTime = +new Date();
           if (!refreshTimeRef.current || (currentTime - refreshTimeRef.current) > retryTime) {
             // 如果是点击重新加载按钮触发的刷新图片，应当设置个阀值，不用那么快关闭loading
-            setLoading(false);
-            setError(true);
-            setSuccess(false);
+            errorOccur();
           } else {
             window.setTimeout(() => {
-              setLoading(false);
-              setError(true);
-              setSuccess(false);
+              errorOccur();
             }, retryTime);
           }
         }}
       />
       <Error
-        show={error}
+        show={error && !loading}
         refresh={() => {
           copy(src);
           refreshTimeRef.current = +new Date();
           setLoading(true);
-          setError(false);
-          setInnerRandom(Date.now());
+          const temp = imgSrc.indexOf(split) > -1 ? src : `${src}${split}${Date.now()}`;
+          setImgSrc(temp);
         }}
       />
       <Loading loading={loading} />

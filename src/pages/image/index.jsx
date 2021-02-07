@@ -1,6 +1,10 @@
 import React from 'react';
 import Image from 'components/image';
 import styles from './index.module.less';
+import img01 from './imgs/01.jpg';
+import img02 from './imgs/02.jpg';
+import img03 from './imgs/03.jpg';
+import img04 from './imgs/04.png';
 
 class Index extends React.PureComponent {
   constructor(props) {
@@ -9,23 +13,19 @@ class Index extends React.PureComponent {
       images: [
         {
           id: 1,
-          src: 'http://localhost:5008/static/image-01.jpg',
-          lazyLoad: true,
+          src: img01,
         },
         {
           id: 2,
-          src: 'http://localhost:5008/static/image-02.jpg',
-          lazyLoad: true,
+          src: img02,
         },
         {
           id: 3,
-          src: 'http://localhost:5008/static/image-01.jpg',
-          lazyLoad: true,
+          src: img03,
         },
         {
           id: 4,
-          src: 'http://localhost:5008/static/image-04.jpg',
-          lazyLoad: true,
+          src: img04,
         },
       ],
     };
@@ -45,7 +45,6 @@ class Index extends React.PureComponent {
               key={item.id}
               size={200}
               src={item.src}
-              lazyLoad={item.lazyLoad}
               random={item.random}
             />
           ))
