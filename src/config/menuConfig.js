@@ -8,6 +8,10 @@ const menuList = [
         title: 'demo',
         url: '/components/demo',
       },
+      {
+        title: '重复请求',
+        url: '/components/repeat-request',
+      },
       // {
       //   title: 'Less高级用法学习',
       //   url: '/components/less',

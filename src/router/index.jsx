@@ -8,6 +8,7 @@ const AdminLayout = loadable(() => import(/* webpackChunkName: "adminLayout" */'
 const Home = loadable(() => import(/* webpackChunkName: "home" */'../pages/home'));
 const App = loadable(() => import(/* webpackChunkName: "app" */'../App'));
 const SearchForm = loadable(() => import(/* webpackChunkName: "searchForm" */'../pages/search-form'));
+const RepeatRequest = loadable(() => import(/* webpackChunkName: "RepeatRequest" */'../pages/repeat-request'));
 const ImageCompress = loadable(() => import(/* webpackChunkName: "imageCompress" */'../pages/image-compress'));
 const PullRefresh = loadable(() => import(/* webpackChunkName: "pullRefresh" */'../pages/pull-refresh'));
 const Spin = loadable(() => import(/* webpackChunkName: "spin" */'../pages/spin'));
@@ -35,6 +36,7 @@ class IRouter extends React.Component {
                     <Route path="/components/demo" component={Demo} />
                     <Route path="/components/less" component={LessDemo} />
                     <Route path="/components/search-form" component={SearchForm} />
+                    <Route path="/components/repeat-request" component={RepeatRequest} />
                     <Route path="/components/image-compress" component={ImageCompress} />
                     <Route path="/components/pull-refresh" component={PullRefresh} />
                     <Route path="/components/spin" component={Spin} />
