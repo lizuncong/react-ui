@@ -8,17 +8,23 @@ class Index extends React.PureComponent {
     super(props);
     this.state = {
       list: [],
+      list2: [],
+      count2: 1,
       count: 1,
     };
   }
 
   render() {
-    const { list, count } = this.state;
+    const {
+      list, count, count2, list2,
+    } = this.state;
     return (
       <div className={styles.container}>
         <div className="demo-title">重复请求</div>
         <div>
-          快速点击查询列表数据按钮，依次发起请求。假设由于网络等原因，第一次请求的结果可能需要等待10秒才返回给前端
+          快速点击查询列表数据按钮，依次发起请求。假设由于网络等原因，第一次请求的结果可能需要等待10秒才返回给前端，第二次请求只需要1秒就返回，
+          此时第二次请求结果先回来，然后第一次的结果最后回来并覆盖掉第二次的结果。显然我们需要的是第二次的结果。这种场景多见于列表查询接口，或者
+          多个tab页快速切换时导致的奇奇怪怪的问题。
         </div>
         <div>
           <Button
@@ -29,6 +35,7 @@ class Index extends React.PureComponent {
               setTimeout(async () => {
                 const result = await request.get({
                   url: '/repeat-list',
+                  useLast: true, // 开启取消重复请求配置
                   data: {
                     count,
                   },
@@ -41,12 +48,45 @@ class Index extends React.PureComponent {
               }, 0);
             }}
           >
-            查询列表数据
+            查询列表数据：取消重复请求
           </Button>
         </div>
         <div className={styles.wrap}>
           {
             list.map((item) => (
+              <div key={item.title}>
+                {item.title}
+              </div>
+            ))
+          }
+        </div>
+        <div style={{ marginTop: '20px' }}>
+          <Button
+            onClick={() => {
+              this.setState({
+                count2: count2 + 1,
+              });
+              setTimeout(async () => {
+                const result = await request.get({
+                  url: '/repeat-list',
+                  data: {
+                    count: count2,
+                  },
+                });
+                if (result) {
+                  this.setState({
+                    list2: result.data,
+                  });
+                }
+              }, 0);
+            }}
+          >
+            查询列表数据：重复请求
+          </Button>
+        </div>
+        <div className={styles.wrap}>
+          {
+            list2.map((item) => (
               <div key={item.title}>
                 {item.title}
               </div>

@@ -2,8 +2,14 @@ import axios from 'axios';
 import qs from 'qs';
 import { notification } from 'antd';
 
+const { CancelToken } = axios;
+
 class Request {
-  request(method, url, data, ...rest) {
+  constructor() {
+    this.urlCancelMap = {}; // 重复请求
+  }
+
+  request(method, url, data, useLast, ...rest) {
     const config = Object.assign({
       method,
       url,
@@ -13,6 +19,15 @@ class Request {
       config.params = data;
     } else if (method === 'post') {
       config.data = data;
+    }
+    const cancelKey = `${method}/${url}`;
+    if (useLast) {
+      if (this.urlCancelMap[cancelKey]) {
+        this.urlCancelMap[cancelKey](); // 取消上一次的请求
+      }
+      config.cancelToken = new CancelToken(((c) => {
+        this.urlCancelMap[cancelKey] = c;
+      }));
     }
     return new Promise((resolve) => {
       axios(config).then((res) => {
@@ -43,22 +58,26 @@ class Request {
         }
         console.log(error.config);
       });
+    }).finally(() => {
+      if (this.urlCancelMap[cancelKey]) {
+        this.urlCancelMap[cancelKey] = null;
+      }
     });
   }
 
   get(options) {
-    return this.request('get', options.url, options.data);
+    return this.request('get', options.url, options.data, options.useLast);
   }
 
   post(options) {
-    return this.request('post', options.url, options.data);
+    return this.request('post', options.url, options.data, options.useLast);
   }
 
   // application/x-www-form-urlencoded
   postForm(options) {
     const data = options.data || {};
     const headers = { 'content-type': 'application/x-www-form-urlencoded' };
-    return this.request('post', options.url, qs.stringify(data), { headers });
+    return this.request('post', options.url, qs.stringify(data), options.useLast, { headers });
   }
 
   // multipart/form-data
@@ -76,7 +95,7 @@ class Request {
       }
     });
     const headers = { 'content-type': 'multipart/form-data' };
-    return this.request('post', options.url, param, { headers });
+    return this.request('post', options.url, param, options.useLast, { headers });
   }
 }
 
