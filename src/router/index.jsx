@@ -20,6 +20,7 @@ const LessDemo = loadable(() => import(/* webpackChunkName: "lessDemo" */'../pag
 const Image = loadable(() => import(/* webpackChunkName: "Image" */'../pages/image'));
 const Ellipse = loadable(() => import(/* webpackChunkName: "Image" */'../pages/ellipse'));
 const ArticlePage = loadable(() => import(/* webpackChunkName: "ArticlePage" */'../pages/article-pagination'));
+const RequestLoading = loadable(() => import(/* webpackChunkName: "RequestLoading" */'../pages/request-loading'));
 
 class IRouter extends React.Component {
   render() {
@@ -37,6 +38,7 @@ class IRouter extends React.Component {
                     <Route path="/components/less" component={LessDemo} />
                     <Route path="/components/search-form" component={SearchForm} />
                     <Route path="/components/repeat-request" component={RepeatRequest} />
+                    <Route path="/components/request-loading" component={RequestLoading} />
                     <Route path="/components/image-compress" component={ImageCompress} />
                     <Route path="/components/pull-refresh" component={PullRefresh} />
                     <Route path="/components/spin" component={Spin} />

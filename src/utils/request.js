@@ -1,15 +1,19 @@
 import axios from 'axios';
 import qs from 'qs';
 import { notification } from 'antd';
+import { showDomLoading, removeDomLoading } from './createOverlayByDom';
 
 const { CancelToken } = axios;
 
 class Request {
   constructor() {
     this.urlCancelMap = {}; // 重复请求
+    this.urlLoadingMap = {}; // dom loading次数
   }
 
-  request(method, url, data, useLast, ...rest) {
+  // loadingDOM 需要加loading效果的dom id。
+  // useLast为true时，如果短时间内发起多次请求，则以最后一次结果为准
+  request(method, url, data, useLast, loadingDOM, ...rest) {
     const config = Object.assign({
       method,
       url,
@@ -20,14 +24,23 @@ class Request {
     } else if (method === 'post') {
       config.data = data;
     }
-    const cancelKey = `${method}/${url}`;
+    const mapKey = `${method}/${url}`;
+    // 配置了取消重复请求
     if (useLast) {
-      if (this.urlCancelMap[cancelKey]) {
-        this.urlCancelMap[cancelKey](); // 取消上一次的请求
+      if (this.urlCancelMap[mapKey]) {
+        this.urlCancelMap[mapKey](); // 取消上一次的请求
       }
       config.cancelToken = new CancelToken(((c) => {
-        this.urlCancelMap[cancelKey] = c;
+        this.urlCancelMap[mapKey] = c;
       }));
+    }
+    // 如果设置了loadingDOM，则需要加loading
+    // 这里需要防止短时间内发起大量请求的情况，这种情况只需要加一次loading
+    if (loadingDOM) {
+      if (!this.urlLoadingMap[loadingDOM]) {
+        showDomLoading(loadingDOM);
+      }
+      this.urlLoadingMap[loadingDOM] = (this.urlLoadingMap[loadingDOM] || 0) + 1;
     }
     return new Promise((resolve) => {
       axios(config).then((res) => {
@@ -59,25 +72,31 @@ class Request {
         console.log(error.config);
       });
     }).finally(() => {
-      if (this.urlCancelMap[cancelKey]) {
-        this.urlCancelMap[cancelKey] = null;
+      if (this.urlCancelMap[mapKey]) {
+        this.urlCancelMap[mapKey] = null;
+      }
+      if (this.urlLoadingMap[loadingDOM]) {
+        this.urlLoadingMap[loadingDOM] = this.urlLoadingMap[loadingDOM] - 1;
+        if (!this.urlLoadingMap[loadingDOM]) {
+          removeDomLoading(loadingDOM);
+        }
       }
     });
   }
 
   get(options) {
-    return this.request('get', options.url, options.data, options.useLast);
+    return this.request('get', options.url, options.data, options.useLast, options.loadingDOM);
   }
 
   post(options) {
-    return this.request('post', options.url, options.data, options.useLast);
+    return this.request('post', options.url, options.data, options.useLast, options.loadingDOM);
   }
 
   // application/x-www-form-urlencoded
   postForm(options) {
     const data = options.data || {};
     const headers = { 'content-type': 'application/x-www-form-urlencoded' };
-    return this.request('post', options.url, qs.stringify(data), options.useLast, { headers });
+    return this.request('post', options.url, qs.stringify(data), options.useLast, options.loadingDOM, { headers });
   }
 
   // multipart/form-data
@@ -95,7 +114,7 @@ class Request {
       }
     });
     const headers = { 'content-type': 'multipart/form-data' };
-    return this.request('post', options.url, param, options.useLast, { headers });
+    return this.request('post', options.url, param, options.useLast, options.loadingDOM, { headers });
   }
 }
 

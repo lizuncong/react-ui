@@ -12,6 +12,10 @@ const menuList = [
         title: '重复请求',
         url: '/components/repeat-request',
       },
+      {
+        title: '请求loading',
+        url: '/components/request-loading',
+      },
       // {
       //   title: 'Less高级用法学习',
       //   url: '/components/less',
