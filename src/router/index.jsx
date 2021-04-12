@@ -21,6 +21,7 @@ const Image = loadable(() => import(/* webpackChunkName: "Image" */'../pages/ima
 const Ellipse = loadable(() => import(/* webpackChunkName: "Image" */'../pages/ellipse'));
 const ArticlePage = loadable(() => import(/* webpackChunkName: "ArticlePage" */'../pages/article-pagination'));
 const RequestLoading = loadable(() => import(/* webpackChunkName: "RequestLoading" */'../pages/request-loading'));
+const Test = loadable(() => import(/* webpackChunkName: "Test" */'../pages/test'));
 
 class IRouter extends React.Component {
   render() {
@@ -48,6 +49,7 @@ class IRouter extends React.Component {
                     <Route path="/components/image" component={Image} />
                     <Route path="/components/ellipse" component={Ellipse} />
                     <Route path="/components/article-pagination" component={ArticlePage} />
+                    <Route path="/components/test" component={Test} />
                     <Redirect to="/home" />
                     {/* <Route component={NotFound} /> */}
                   </Switch>

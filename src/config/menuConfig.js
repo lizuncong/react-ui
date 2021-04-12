@@ -5,6 +5,10 @@ const menuList = [
     url: '/components',
     children: [
       {
+        title: 'test',
+        url: '/components/test',
+      },
+      {
         title: 'demo',
         url: '/components/demo',
       },
