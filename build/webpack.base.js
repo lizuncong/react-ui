@@ -31,13 +31,13 @@ module.exports = (mode) => {
     output: {
       path: isEnvProduction ? path.resolve(__dirname, '../dist') : undefined,
       filename: isEnvProduction
-        ? 'react-ui/static/js/[name].[contenthash:8].js'
+        ? 'static/js/[name].[contenthash:8].js'
         : 'static/js/bundle.js',
       chunkFilename: isEnvProduction
-        ? 'react-ui/static/js/[name].[contenthash:8].chunk.js'
+        ? 'static/js/[name].[contenthash:8].chunk.js'
         : 'static/js/[name].chunk.js',
       futureEmitAssets: true,
-      publicPath: '/',
+      publicPath: '/react-ui/',
     },
     resolve: {
       extensions: ['.js', '.jsx'],
