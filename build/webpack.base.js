@@ -37,7 +37,7 @@ module.exports = (mode) => {
         ? 'static/js/[name].[contenthash:8].chunk.js'
         : 'static/js/[name].chunk.js',
       futureEmitAssets: true,
-      publicPath: '/react-ui/',
+      publicPath: isEnvProduction ? '/react-ui/' : '/',
     },
     resolve: {
       extensions: ['.js', '.jsx'],
