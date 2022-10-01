@@ -1,0 +1,2 @@
+.app{height:100vh;overflow:hidden}.requestLoadingOverlay{transform:translateZ(0);overflow:hidden!important}.domOverlay{position:fixed;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background:rgba(0,0,0,.12);z-index:2;cursor:not-allowed;inset:0}.loadingImg{position:absolute;width:25px;height:25px;top:50%;left:50%;transform:translate(-50%,-50%)}.unsetTransition{transition:unset!important}
+/*# sourceMappingURL=app.cf6fdbc9.chunk.css.map */
