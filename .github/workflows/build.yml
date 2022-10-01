@@ -11,8 +11,8 @@ jobs:
         uses: actions/checkout@master
       - name: Install and Build
         uses: actions/setup-node@v2
-        with:
-          node-version: "12"
+          with:
+            node-version: "12"
         run: |
           npm install
           npm run build
