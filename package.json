@@ -1,6 +1,5 @@
 {
   "name": "react-ui",
-  "sideEffects": false,
   "version": "1.0.0",
   "description": "react组件库",
   "author": "lizuncong &lt;2900170896@qq.com&gt;",
