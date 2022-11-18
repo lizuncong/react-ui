@@ -22,6 +22,7 @@ const Ellipse = loadable(() => import(/* webpackChunkName: "Image" */'../pages/e
 const ArticlePage = loadable(() => import(/* webpackChunkName: "ArticlePage" */'../pages/article-pagination'));
 const RequestLoading = loadable(() => import(/* webpackChunkName: "RequestLoading" */'../pages/request-loading'));
 const Test = loadable(() => import(/* webpackChunkName: "Test" */'../pages/test'));
+const CanvasDemo = loadable(() => import(/* webpackChunkName: "CanvasDemo" */'../pages/canvas-demo'));
 
 class IRouter extends React.Component {
   render() {
@@ -50,6 +51,7 @@ class IRouter extends React.Component {
                     <Route path="/components/ellipse" component={Ellipse} />
                     <Route path="/components/article-pagination" component={ArticlePage} />
                     <Route path="/components/test" component={Test} />
+                    <Route path="/components/canvas-demo" component={CanvasDemo} />
                     <Redirect to="/home" />
                     {/* <Route component={NotFound} /> */}
                   </Switch>
