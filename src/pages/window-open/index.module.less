@@ -1,0 +1,43 @@
+.container {
+  background: white;
+  margin: 12px;
+  padding: 12px;
+  border: 1px solid #f0f0f0;
+  border-radius: 4px;
+  overflow: auto;
+  .wrap {
+    background: white;
+    .searchForm {
+      box-shadow: none;
+    }
+  }
+  .item {
+    height: 50px;
+    border-bottom: 1px solid #e6e6e6;
+  }
+  .demoImg {
+    display: block;
+    width: auto;
+    height: 300px;
+  }
+
+  .blockContainer {
+    width: 400px;
+    overflow: hidden;
+    display: flex;
+    column-gap: 20px;
+    row-gap: 20px;
+    flex-wrap: wrap;
+    border: 1px solid #eee;
+    .block {
+      min-width: 80px;
+      flex: 1;
+      height: 50px;
+      border: 1px dashed #eee;
+    }
+  }
+}
+
+.count {
+  color: red;
+}

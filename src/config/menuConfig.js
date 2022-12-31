@@ -13,6 +13,10 @@ const menuList = [
         url: '/components/demo',
       },
       {
+        title: '多窗口数据共享',
+        url: '/components/window-open',
+      },
+      {
         title: '重复请求',
         url: '/components/repeat-request',
       },
